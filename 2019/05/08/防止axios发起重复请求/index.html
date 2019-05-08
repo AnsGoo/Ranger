@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ansgoo.github.io/Ranger">
-  <title>Archives: 2019/5 | 派对实验室</title>
+  <title>防止axios发起重复请求 | 派对实验室</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="派对实验室">
-<meta property="og:url" content="https://ansgoo.github.io/Ranger/archives/2019/05/index.html">
+  <meta name="description" content="前言在web开发中，我们经常遇到用户重复点击导致某个请求多次提交的问题，今天我们分享两种axios防止用户提交重复请求的方法。 如何认定为重复请求？当一次请求尚未完成又发起的相同的请求的情况，我们称之为重复请求。 解决思路 当上次请求尚未完成，用户再次发起请求的时候，我们将上次请求取消，并开始新的请求。 当上次请求尚未完成，如果用户再次发起相同的请求，我们将本次请求取消，等待上次请求完成。 两种方">
+<meta name="keywords" content="vue,axios,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="防止axios发起重复请求">
+<meta property="og:url" content="https://ansgoo.github.io/Ranger/2019/05/08/防止axios发起重复请求/index.html">
 <meta property="og:site_name" content="派对实验室">
+<meta property="og:description" content="前言在web开发中，我们经常遇到用户重复点击导致某个请求多次提交的问题，今天我们分享两种axios防止用户提交重复请求的方法。 如何认定为重复请求？当一次请求尚未完成又发起的相同的请求的情况，我们称之为重复请求。 解决思路 当上次请求尚未完成，用户再次发起请求的时候，我们将上次请求取消，并开始新的请求。 当上次请求尚未完成，如果用户再次发起相同的请求，我们将本次请求取消，等待上次请求完成。 两种方">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://ansgoo.github.io/Ranger/2019/05/08/防止axios发起重复请求/axios.png">
+<meta property="og:updated_time" content="2019-05-08T14:19:27.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="派对实验室">
+<meta name="twitter:title" content="防止axios发起重复请求">
+<meta name="twitter:description" content="前言在web开发中，我们经常遇到用户重复点击导致某个请求多次提交的问题，今天我们分享两种axios防止用户提交重复请求的方法。 如何认定为重复请求？当一次请求尚未完成又发起的相同的请求的情况，我们称之为重复请求。 解决思路 当上次请求尚未完成，用户再次发起请求的时候，我们将上次请求取消，并开始新的请求。 当上次请求尚未完成，如果用户再次发起相同的请求，我们将本次请求取消，等待上次请求完成。 两种方">
+<meta name="twitter:image" content="https://ansgoo.github.io/Ranger/2019/05/08/防止axios发起重复请求/axios.png">
   
     <link rel="alternative" href="/atom.xml" title="派对实验室" type="application/atom+xml">
   
@@ -140,36 +147,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-防止axios发起重复请求" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Ranger/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Ranger/2019/05/08/防止axios发起重复请求/" class="archive-article-date">
-  	<time datetime="2019-05-08T13:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Ranger/2019/05/08/防止axios发起重复请求/">防止axios发起重复请求</a>
+    <h1 class="article-title" itemprop="name">
+      防止axios发起重复请求
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Ranger/2019/05/08/防止axios发起重复请求/" class="archive-article-date">
+  	<time datetime="2019-05-08T13:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在web开发中，我们经常遇到用户重复点击导致某个请求多次提交的问题，今天我们分享两种axios防止用户提交重复请求的方法。</p>
+<h3 id="如何认定为重复请求？"><a href="#如何认定为重复请求？" class="headerlink" title="如何认定为重复请求？"></a>如何认定为重复请求？</h3><p>当一次请求尚未完成又发起的相同的请求的情况，我们称之为重复请求。</p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><ol>
+<li>当上次请求尚未完成，用户再次发起请求的时候，我们将上次请求取消，并开始新的请求。</li>
+<li>当上次请求尚未完成，如果用户再次发起相同的请求，我们将本次请求取消，等待上次请求完成。</li>
+<li>两种方式都必须用到了axios路由拦截器，在请求之前进行判别和请求之后进行去除</li>
+<li>其他方式</li>
+</ol>
+<p>以下是实现思路图：<br><img src="/Ranger/2019/05/08/防止axios发起重复请求/axios.png" alt="axios防止重复请求示意图"></p>
+<h3 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> requestPool = []; <span class="comment">//声明存储请求的数组</span></span><br><span class="line"><span class="keyword">let</span> cancelToken = axios.CancelToken;<span class="comment">//校验请求是否已经存在</span></span><br><span class="line"><span class="keyword">let</span>  validateRequest = <span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> q <span class="keyword">in</span> requestPool)&#123;</span><br><span class="line">        <span class="keyword">if</span>(requestPool[q].u==config.url+<span class="string">'&amp;&amp;'</span>config.method)&#123;</span><br><span class="line">            requestPool[q].f() <span class="comment">//如果存在取消上次请求</span></span><br><span class="line">            requestPool.splice(q,<span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> removeRequest=<span class="function">(<span class="params">config</span>)=&gt;</span>&#123; <span class="comment">//将已完成的请求从requestPool中移除</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">let</span> q <span class="keyword">in</span> requestPool)&#123;</span><br><span class="line">        <span class="keyword">if</span>(requestPool[q].u==config.url+<span class="string">'&amp;&amp;'</span>config.method)&#123;</span><br><span class="line">            requestPool.splice(q,<span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加请求拦截器</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span>=&gt;</span>&#123;</span><br><span class="line">    validateRequest(config);<span class="comment">//校验请求</span></span><br><span class="line">    config.cancelToken = <span class="keyword">new</span> cancelToken(<span class="function">(<span class="params">c</span>)=&gt;</span>&#123;</span><br><span class="line">        requestPool.push(&#123;u:config.url+<span class="string">'&amp;&amp;'</span>config.method,f:c&#125;)<span class="comment">//将新的请求加入requestPool</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">    &#125;,</span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">response</span>=&gt;</span> &#123;</span><br><span class="line">   removeRequest(response.config) <span class="comment">//移除已经完成请求</span></span><br><span class="line">   <span class="keyword">return</span> response</span><br><span class="line">    &#125;,</span><br><span class="line">    error=&gt;&#123;</span><br><span class="line">        requestPool=[];</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err); <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+<h3 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> requestPool = []; <span class="comment">//声明存储请求的数组</span></span><br><span class="line"><span class="keyword">let</span>  validateRequest = <span class="function">(<span class="params">config</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> isExist=<span class="literal">false</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> q <span class="keyword">in</span> requestPool)&#123;</span><br><span class="line">        <span class="keyword">if</span>(requestPool[q]==config.url+<span class="string">'&amp;&amp;'</span>config.method)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> removeRequest=<span class="function">(<span class="params">config</span>)=&gt;</span>&#123; <span class="comment">//将已完成的请求从requestPool中移除</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">let</span> q <span class="keyword">in</span> requestPool)&#123;</span><br><span class="line">        <span class="keyword">if</span>(requestPool[q]==config.url+<span class="string">'&amp;&amp;'</span>config.method)&#123;</span><br><span class="line">            requestPool.splice(q,<span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加请求拦截器</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(validateRequest(config))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(<span class="string">'请求已经存在'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        requestPool.push(config.url+<span class="string">'&amp;&amp;'</span>config.method)<span class="comment">//将新的请求加入requestPool</span></span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">response</span>=&gt;</span> &#123;</span><br><span class="line">   removeRequest(response.config) <span class="comment">//移除已经完成请求</span></span><br><span class="line">   <span class="keyword">return</span> response</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    error=&gt;&#123;</span><br><span class="line">        requestPool=[];</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err); <span class="comment">// 返回接口返回的错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+<h3 id="两种方式的比较"><a href="#两种方式的比较" class="headerlink" title="两种方式的比较"></a>两种方式的比较</h3><p><strong>取消上次请求方式</strong>：</p>
+<blockquote>
+<p>这种方式可以在对多次点击进行良好的管理，只保留最后一次请求动作，测试效果对于向后台获取数据的请求管理比较良好，但是对于某些例如向添加、制定后台执行某些动作的请求，虽然上次请求已经取消，但是后台已经获取到请求并开始相关动作，后台的动作却无法取消。</p>
+</blockquote>
+<p><strong>取消本次请求，保留第一请求</strong></p>
+<blockquote>
+<p>这种方式虽然只保留第一请求的，取消了后面几种请求，但是如果第一次请求已经完成，而用户又没有意识到请求已经完成情况下再次发起的请求，是有效的，因此第一请求完成时已经从requestPool中将该请求去掉,这种方式只能减少请求次数，不能很好管理重复请求。</p>
+</blockquote>
+<p><strong>两种方式各有优缺点，请大家自行斟酌采纳</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,107 +214,117 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ansgoo.github.io/Ranger/2019/05/08/防止axios发起重复请求/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Ranger/2019/05/06/APScheduler教程/" class="archive-article-date">
-  	<time datetime="2019-05-06T10:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/Ranger/2019/05/06/APScheduler教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">APScheduler教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Ranger/2019/05/06/APScheduler教程/">APScheduler教程</a>
-    </h1>
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "https://ansgoo.github.io/Ranger/Ranger/2019/05/08/防止axios发起重复请求/", 
+    sourceId: "防止axios发起重复请求",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">apscheduler</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">定时任务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Ranger/2019/05/04/使用github搭建静态博客/" class="archive-article-date">
-  	<time datetime="2019-05-04T10:31:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Ranger/2019/05/04/使用github搭建静态博客/">使用github搭建静态博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -312,8 +347,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
