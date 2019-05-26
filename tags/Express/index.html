@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ansgoo.github.io/Ranger">
-  <title>派对实验室</title>
+  <title>Tag: Express | 派对实验室</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="派对实验室">
-<meta property="og:url" content="https://ansgoo.github.io/Ranger/index.html">
+<meta property="og:url" content="https://ansgoo.github.io/Ranger/tags/Express/index.html">
 <meta property="og:site_name" content="派对实验室">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -142,47 +142,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Express入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/Ranger/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/Ranger/2019/05/26/Express入门/" class="archive-article-date">
+  	<time datetime="2019-05-26T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-26</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/Ranger/2019/05/26/Express入门/">Express入门</a>
+      <a class="archive-article-title" href="/Ranger/2019/05/26/Express入门/">Express入门</a>
     </h1>
   
 
-        
-        <a href="/Ranger/2019/05/26/Express入门/" class="archive-article-date">
-  	<time datetime="2019-05-26T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么是Express？"><a href="#什么是Express？" class="headerlink" title="什么是Express？"></a>什么是Express？</h3><p><strong>基于 Node.js 平台，快速、开放、极简的 Web 开发框架</strong><br>Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
-<p>此命令将要求你输入几个参数，例如此应用的名称和版本。 你可以直接按“回车”键接受大部分默认设置即可，下面这个除外：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">entry point: (index.js)</span><br></pre></td></tr></table></figure></p>
-<p>键入 app.js 或者你所希望的名称，这是当前应用的入口文件。如果你希望采用默认的 index.js 文件名，只需按“回车”键即可。<br>会生成一个<code>package.json</code>文件，具体如下：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"demo1"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"app.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"express"</span>: <span class="string">"^4.17.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从这个文件我们可以看出，这个程序名字是<code>demo1</code>，程序的主入口为<code>app.js</code>,接下来安装<code>Express</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure></p>
-<p>编写主应用程序<code>app.js</code><br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> res.send(<span class="string">'Hello World!'</span>))</span><br><span class="line">app.listen(<span class="number">3000</span>, <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Example app listening on port 3000!'</span>))</span><br></pre></td></tr></table></figure></p>
-<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><p>打开浏览器，访问<code>127.0.0.1:3000</code>，即可看到<code>Hello World</code></p>
-<h3 id="Express-应用生成器"><a href="#Express-应用生成器" class="headerlink" title="Express 应用生成器"></a>Express 应用生成器</h3><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo install express-generator -g</span><br></pre></td></tr></table></figure>
-<p>输入<code>express -h</code>,可以看到常用命令</p>
-<h4 id="生成应用程序"><a href="#生成应用程序" class="headerlink" title="生成应用程序"></a>生成应用程序</h4><p>创建一个名为<code>myapp</code>的Express 应用，并使用<code>pug</code>为模板引擎<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express --view=pug myapp</span><br></pre></td></tr></table></figure></p>
-<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>liux运行下面的命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd myapp</span><br><span class="line">npm install</span><br><span class="line">DEBUG=myapp:* npm start</span><br></pre></td></tr></table></figure></p>
-<p>windows运行下面命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd myapp</span><br><span class="line">npm install</span><br><span class="line">set DEBUG=myapp:* &amp; npm start</span><br></pre></td></tr></table></figure></p>
-<p>在浏览器打开｀127.0.0.1:3000｀即可看到次应用程序</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -198,319 +185,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Ranger/2019/05/26/Express入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-防止axios发起重复请求" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Ranger/2019/05/08/防止axios发起重复请求/">防止axios发起重复请求</a>
-    </h1>
-  
-
-        
-        <a href="/Ranger/2019/05/08/防止axios发起重复请求/" class="archive-article-date">
-  	<time datetime="2019-05-08T13:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在web开发中，我们经常遇到用户重复点击导致某个请求多次提交的问题，今天我们分享两种axios防止用户提交重复请求的方法。</p>
-<h3 id="如何认定为重复请求？"><a href="#如何认定为重复请求？" class="headerlink" title="如何认定为重复请求？"></a>如何认定为重复请求？</h3><p>当一次请求尚未完成又发起的相同的请求的情况，我们称之为重复请求。</p>
-<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><ol>
-<li>当上次请求尚未完成，用户再次发起请求的时候，我们将上次请求取消，并开始新的请求。</li>
-<li>当上次请求尚未完成，如果用户再次发起相同的请求，我们将本次请求取消，等待上次请求完成。</li>
-<li>两种方式都必须用到了axios路由拦截器，在请求之前进行判别和请求之后进行去除</li>
-<li>其他方式</li>
-</ol>
-<p>以下是实现思路图：<br><img src="/Ranger/2019/05/08/防止axios发起重复请求/axios.png" alt="axios防止重复请求示意图"></p>
-        
-          <a class="article-more-a" href="/Ranger/2019/05/08/防止axios发起重复请求/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">axios</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Ranger/2019/05/08/防止axios发起重复请求/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-APScheduler教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Ranger/2019/05/06/APScheduler教程/">APScheduler教程</a>
-    </h1>
-  
-
-        
-        <a href="/Ranger/2019/05/06/APScheduler教程/" class="archive-article-date">
-  	<time datetime="2019-05-06T10:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>APScheduler(Advanced Python Scheduler) 是一个python 定时任务管理库，你可以用它进行job的增加、删除，你也可以将你的jobs进行序列化存储到相应数据库。</p>
-<p>APScheudler是一个跨平台python库，你可以用它来代替windows平台上的计划任务，也可以用它来替代Linux平台的守时任务</p>
-<p>APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。<br></p>
-        
-          <a class="article-more-a" href="/Ranger/2019/05/06/APScheduler教程/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">apscheduler</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">定时任务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Ranger/2019/05/06/APScheduler教程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-使用github搭建静态博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Ranger/2019/05/04/使用github搭建静态博客/">使用github搭建静态博客</a>
-    </h1>
-  
-
-        
-        <a href="/Ranger/2019/05/04/使用github搭建静态博客/" class="archive-article-date">
-  	<time datetime="2019-05-04T10:31:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直想找一个知识管理方法，免费、支持移动端同步、支持MarkDown、支持代码块高亮，使用遍了所有笔记应用，印象、有道、为知、OneNote无一要么每个月有流量限制，要么不支持markdown和代码高亮，最后还是选定了GitHub搭建静态博客方式，这是本人的搭建过程，仅供参考</p>
-<h3 id="在github上创建自己的博客仓"><a href="#在github上创建自己的博客仓" class="headerlink" title="在github上创建自己的博客仓"></a>在github上创建自己的博客仓</h3><p>具体方法请自行百度</p>
-<h3 id="本地搭建Hexo运行环境"><a href="#本地搭建Hexo运行环境" class="headerlink" title="本地搭建Hexo运行环境"></a>本地搭建<a href="https://hexo.io/zh-cn" target="_blank" rel="noopener">Hexo</a>运行环境</h3><ol>
-<li>安装Node.js环境<blockquote>
-<p>具体自行百度谷歌</p>
-</blockquote>
-</li>
-<li>本地安装git环境,并进行SSH授权<blockquote>
-<p>具体自行百度谷歌</p>
-</blockquote>
-</li>
-<li>安装Hexo</li>
-</ol>
-<blockquote>
-<p><code>npm install hexo-cli -g</code></p>
-</blockquote>
-<h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>1.创建hexo博客这里以<code>blog</code>为例</p>
-<blockquote>
-<p><code>hexo init blog</code></p>
-</blockquote>
-<p>运行hexo博客<br></p>
-        
-          <a class="article-more-a" href="/Ranger/2019/05/04/使用github搭建静态博客/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Ranger/2019/05/04/使用github搭建静态博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -532,10 +219,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
