@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ansgoo.github.io/Ranger">
-  <title>Tag: 基础教程 | 派对实验室</title>
+  <title>一种基于django-restFramework通用型增删改查方案 | 派对实验室</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="派对实验室">
-<meta property="og:url" content="https://ansgoo.github.io/Ranger/tags/基础教程/index.html">
+  <meta name="description" content="方案理论基础在Web开发中对于数据模型的操作不可避免，常见的数据资源的对象一般有两种：  对某一数据资源集合的操作 对某一数据资源对象的的操作  对于数据资源操作及其前端HTTP请求方法通常有：  增—-&amp;gt; POST or PUT 删—-&amp;gt; DELETE  改—-&amp;gt; POST or PUT 查—-&amp;gt; POST or GET  而业界RESTful API设计风格的对资源的操">
+<meta name="keywords" content="django,django-restFramework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一种基于django-restFramework通用型增删改查方案">
+<meta property="og:url" content="https://ansgoo.github.io/Ranger/2019/06/21/一种基于django-restFramework通用型增删改查方案/index.html">
 <meta property="og:site_name" content="派对实验室">
+<meta property="og:description" content="方案理论基础在Web开发中对于数据模型的操作不可避免，常见的数据资源的对象一般有两种：  对某一数据资源集合的操作 对某一数据资源对象的的操作  对于数据资源操作及其前端HTTP请求方法通常有：  增—-&amp;gt; POST or PUT 删—-&amp;gt; DELETE  改—-&amp;gt; POST or PUT 查—-&amp;gt; POST or GET  而业界RESTful API设计风格的对资源的操">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-21T15:55:20.191Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="派对实验室">
+<meta name="twitter:title" content="一种基于django-restFramework通用型增删改查方案">
+<meta name="twitter:description" content="方案理论基础在Web开发中对于数据模型的操作不可避免，常见的数据资源的对象一般有两种：  对某一数据资源集合的操作 对某一数据资源对象的的操作  对于数据资源操作及其前端HTTP请求方法通常有：  增—-&amp;gt; POST or PUT 删—-&amp;gt; DELETE  改—-&amp;gt; POST or PUT 查—-&amp;gt; POST or GET  而业界RESTful API设计风格的对资源的操">
   
     <link rel="alternative" href="/atom.xml" title="派对实验室" type="application/atom+xml">
   
@@ -140,64 +145,190 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-一种基于django-restFramework通用型增删改查方案" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Ranger/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Ranger/2019/05/26/Express入门/" class="archive-article-date">
-  	<time datetime="2019-05-26T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Ranger/2019/05/26/Express入门/">Express入门</a>
+    <h1 class="article-title" itemprop="name">
+      一种基于django-restFramework通用型增删改查方案
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Ranger/2019/06/21/一种基于django-restFramework通用型增删改查方案/" class="archive-article-date">
+  	<time datetime="2019-06-21T14:23:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方案理论基础"><a href="#方案理论基础" class="headerlink" title="方案理论基础"></a>方案理论基础</h2><p>在Web开发中对于数据模型的操作不可避免，常见的数据资源的对象一般有两种：</p>
+<ol>
+<li>对某一数据资源集合的操作</li>
+<li>对某一数据资源对象的的操作</li>
+</ol>
+<p>对于数据资源操作及其前端HTTP请求方法通常有：</p>
+<ol>
+<li><code>增</code>—-&gt; <code>POST</code> or <code>PUT</code></li>
+<li><code>删</code>—-&gt; <code>DELETE</code> </li>
+<li><code>改</code>—-&gt; <code>POST</code> or <code>PUT</code></li>
+<li><code>查</code>—-&gt; <code>POST</code> or <code>GET</code></li>
+</ol>
+<p>而业界<code>RESTful API</code>设计风格的对资源的操作类型和HTTP动词关系设计通常采用如下方案：</p>
+<ol>
+<li><code>增</code>—-&gt; <code>POST</code> (在服务器新建资源)</li>
+<li><code>删</code>—-&gt; <code>DELETE</code> (从服务器删除资源) </li>
+<li><code>改</code>—-&gt; <code>PUT</code> (在服务器更新资源，客户端提供资源改变属性)</li>
+<li><code>查</code>—-&gt; <code>GET</code> (从服务器获去资源)</li>
+<li><code>改</code>—-&gt; <code>PATCH</code> (在服务器更新资源，服务器提供资源改变属性)</li>
+</ol>
+<p>利用上述原理和<code>django-restFramework</code>的序列化器<code>serialiaer</code>我们设计一种适用于<code>django</code>框架项目的通用型增删改查方案。</p>
+<h2 id="项目架构"><a href="#项目架构" class="headerlink" title="项目架构"></a>项目架构</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">project---</span><br><span class="line">         |--project--|</span><br><span class="line">                     |__init__.py</span><br><span class="line">                     |urls.py</span><br><span class="line">                     |settings.py</span><br><span class="line">                     |wsgi.py</span><br><span class="line"></span><br><span class="line">         |---app-----|__init__.py</span><br><span class="line">                     |app.py</span><br><span class="line">                     |urls.py</span><br><span class="line">                     |views.py</span><br><span class="line">                     |serializers.py     </span><br><span class="line">                     |models.py</span><br><span class="line">                     |admin.py</span><br><span class="line">        ....</span><br><span class="line"></span><br><span class="line">        |--manage.py</span><br></pre></td></tr></table></figure>
+<h2 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#views.py</span></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Q</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> model</span><br><span class="line"><span class="keyword">from</span> app.serializers <span class="keyword">import</span> JSONResponse</span><br><span class="line"><span class="keyword">from</span> rest_framework.parsers <span class="keyword">import</span> JSONParserl</span><br><span class="line"><span class="keyword">import</span> importlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_list</span><span class="params">(request)</span>:</span></span><br><span class="line">     </span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    列出所有的code snippet，或创建一个新的snippet。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    model_str=request.META.get(<span class="string">'HTTP_MODEL'</span>)</span><br><span class="line">    <span class="keyword">global</span> model</span><br><span class="line">    <span class="keyword">global</span> serializers</span><br><span class="line">    <span class="keyword">if</span> model_str:</span><br><span class="line">        Model=getattr(model,model_str)</span><br><span class="line">        ModelSerializer=getattr(serializers,model_str+<span class="string">'Serializer'</span>)</span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">            <span class="comment"># 获取资源列表</span></span><br><span class="line">            models = Model.objects.ALL()</span><br><span class="line">            serializer = ModelSerializer(models, many=<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">return</span> JSONResponse(serializer.data)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">            <span class="comment"># 根据条件获取资源列表</span></span><br><span class="line">            data = JSONParser().parse(request))</span><br><span class="line">            serializer = ModelSerializer(data=data)</span><br><span class="line">            fields=Model.get_fields()</span><br><span class="line">            q_list=[]</span><br><span class="line">            <span class="keyword">for</span> field <span class="keyword">in</span> fields:</span><br><span class="line">                value=data.get(field)</span><br><span class="line">                <span class="keyword">if</span> value:</span><br><span class="line">                    q_list.append(Q(**&#123;field+<span class="string">'__icontains'</span>:value&#125;))</span><br><span class="line">            id_list=Model.get_indexs()</span><br><span class="line">            <span class="keyword">for</span> field <span class="keyword">in</span> id_list:</span><br><span class="line">                value=data.get(field)</span><br><span class="line">                <span class="keyword">if</span> isinstance(value,list):</span><br><span class="line">                    <span class="keyword">if</span> data.get(field):</span><br><span class="line">                        q_list.append(Q(**&#123;field+<span class="string">'__in'</span>:value&#125;))</span><br><span class="line">                <span class="keyword">if</span> isinstance(value,int):</span><br><span class="line">                    <span class="keyword">if</span> data.get(field):</span><br><span class="line">                        q_list.append(Q(**&#123;field+<span class="string">''</span>:value&#125;))</span><br><span class="line">                <span class="keyword">if</span> isinstance(value,str):</span><br><span class="line">                    <span class="keyword">if</span> data.get(field):</span><br><span class="line">                        q_list.append(Q(**&#123;field+<span class="string">''</span>:int(value)&#125;))</span><br><span class="line">            models=Model.objects.filter((reduce(operator.and_, q_list)))</span><br><span class="line">            serializer = ModelSerializer(models, many=<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">return</span> JSONResponse(serializer.data)</span><br><span class="line">        <span class="keyword">elif</span> request.method == <span class="string">'PUT'</span>:</span><br><span class="line">        <span class="comment"># 新建资源</span></span><br><span class="line">            data = JSONParser().parse(request)</span><br><span class="line">            serializer = ModelSerializer(data=data)</span><br><span class="line">            <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">                serializer.save()</span><br><span class="line">                <span class="keyword">return</span> JSONResponse(serializer.data, status=status.HTTP_201_CREATED)</span><br><span class="line">            <span class="keyword">return</span> JSONResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line">    <span class="keyword">return</span> JSONResponse(<span class="string">'not definde request headers model'</span>, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model_detail</span><span class="params">(request,pk)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    获取，更新或删除一个 code snippet。</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    model_str=request.META.get(<span class="string">'HTTP_MODEL'</span>)</span><br><span class="line">    <span class="keyword">global</span> model</span><br><span class="line">    <span class="keyword">global</span> serializers</span><br><span class="line">    <span class="keyword">if</span> model_str:</span><br><span class="line">        Model=getattr(model,model_str)</span><br><span class="line">        ModelSerializer=getattr(serializers,model_str+<span class="string">'Serializer'</span>)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            model = Model.objects.get(pk=pk)</span><br><span class="line">        <span class="keyword">except</span> Model.DoesNotExist:</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(status=status.HTTP_404_NOT_FOUND)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="comment">#获取一个资源对象</span></span><br><span class="line">            serializer = ModelSerializer(model)</span><br><span class="line">            <span class="keyword">return</span> JSONResponse(serializer.data)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> request.method == <span class="string">'PUT'</span>:</span><br><span class="line">        <span class="comment"># 更新一个资源对象</span></span><br><span class="line">            data = JSONParser().parse(request)</span><br><span class="line">            serializer = ModelSerializer(model, data=data)</span><br><span class="line">            <span class="keyword">if</span> serializer.is_valid():</span><br><span class="line">                serializer.save()</span><br><span class="line">                <span class="keyword">return</span> Response(serializer.data)</span><br><span class="line">            <span class="keyword">return</span> JSONResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> request.method == <span class="string">'DELETE'</span>:</span><br><span class="line">        <span class="comment">#删除一个资源对象</span></span><br><span class="line">            model.delete()</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(status=status.HTTP_204_NO_CONTENT)</span><br><span class="line">    <span class="keyword">return</span> JSONResponse(<span class="string">'not definde request headers model'</span>, status=status.HTTP_400_BAD_REQUEST)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># serializers.py</span></span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="keyword">from</span> rest_framework.renderers <span class="keyword">import</span> JSONRenderer</span><br><span class="line"><span class="keyword">from</span> app.model <span class="keyword">import</span> Modal</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JSONResponse</span><span class="params">(HttpResponse)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    An HttpResponse that renders its content into JSON.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data, **kwargs)</span>:</span></span><br><span class="line">        content = JSONRenderer().render(data)</span><br><span class="line">        kwargs[<span class="string">'content_type'</span>] = <span class="string">'application/json'</span></span><br><span class="line">        super(JSONResponse, self).__init__(content, **kwargs)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModalSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Modal</span><br><span class="line">        fields = <span class="string">'__all__'</span></span><br></pre></td></tr></table></figure>
+<h3 id="请求封装"><a href="#请求封装" class="headerlink" title="请求封装"></a>请求封装</h3><p>首先在前端请求的headers中添加我们需要获取的资源类名<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">headers=&#123;<span class="string">'model'</span>:<span class="string">'Model'</span>,<span class="string">'Content-Type'</span>:<span class="string">'application/json'</span>&#125;</span><br><span class="line">url=<span class="string">'http://127.0.0.1:8000/app/model/model_list/'</span></span><br><span class="line">response=requests.get(url, headers=headers)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure></p>
+<p>为了防止<code>django</code>拦截headers中的参数，我们需要在<code>settings</code>文件中配置<code>request</code>跨域的允许访问的<code>headers</code>字段<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CORS_ALLOW_HEADERS = (</span><br><span class="line">    <span class="string">'accept'</span>,</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">'model'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h3 id="解析并获取资源类"><a href="#解析并获取资源类" class="headerlink" title="解析并获取资源类"></a>解析并获取资源类</h3><p>前台请求制定资源对象类名和请求HTTP动词即可通过反射定位到对应方法，完成对资源的相关操作<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app 下的model文件</span></span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> model</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> serializers</span><br><span class="line"><span class="comment"># 反射获取model 类</span></span><br><span class="line">Model=getattr(model,model_str)</span><br><span class="line"><span class="comment"># 反射获取 model类对象的序列化对象</span></span><br><span class="line">ModelSerializer=getattr(serializers,model_str+<span class="string">'Serializer'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="动态构建资源对象的查询条件"><a href="#动态构建资源对象的查询条件" class="headerlink" title="动态构建资源对象的查询条件"></a>动态构建资源对象的查询条件</h3><p>通常我们对资源查询对于像<code>id</code>、<code>pk</code>、<code>fk</code>等索引性条件采用<code>field__in=list_obj</code>或者<code>field=int_obj</code>,对于其他字段通常采用<code>field__icontains=obj</code>的模糊匹配的方法，进行条件查询，利用这些特性，我们使用<code>Q</code>查询动态构建查询条件。</p>
+<p>为了让改方法适用于所有的模型，我们讲查询条件定义到 ｀model.py｀中的资源对象类中静态方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserDetail</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name=models.CharField(max_length=<span class="number">50</span>,  null=<span class="literal">True</span>)</span><br><span class="line">    sex=models.CharField(max_length=<span class="number">2</span>, null=<span class="literal">True</span>)</span><br><span class="line">    age=models.IntegerField()</span><br><span class="line">    address=models.CharField(max_length=<span class="number">100</span>, null=<span class="literal">True</span>)</span><br><span class="line">    user=models.ForeignKey(User,null=<span class="literal">True</span>, blank=<span class="literal">True</span>, on_delete=models.SET_NULL))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_indexs</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> [<span class="string">'id'</span><span class="string">'age'</span>,<span class="string">'pk'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_fields</span><span class="params">(Self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> [<span class="string">'name'</span>,<span class="string">'sex'</span>,<span class="string">'address'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>至此我们基本完成了jango项目通用型增删改查的方案，所有跟资源模型相关在<code>model</code>文件中定义，如果要使用<code>django-restframwork</code>序列化方法的相关则在<code>serializers.py</code>中定义，对资源模型的操作在<code>views</code>文件中定义，当然你完全可以重新定义当多个APP使用同一个<code>model_list()</code>和<code>model_detail()</code>方法，也可以不采用<code>django-restframwork</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Express</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">django</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">基础教程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">django-restFramework</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ansgoo.github.io/Ranger/2019/06/21/一种基于django-restFramework通用型增删改查方案/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/Ranger/2019/06/20/Django动态路由系统实现方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Django动态路由系统实现方案</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "https://ansgoo.github.io/Ranger/Ranger/2019/06/21/一种基于django-restFramework通用型增删改查方案/", 
+    sourceId: "一种基于django-restFramework通用型增删改查方案",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -220,9 +351,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
