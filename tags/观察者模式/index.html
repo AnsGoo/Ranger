@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ansgoo.github.io/Ranger">
-  <title>PyZMQ一种可靠的请求应答模式--超时重试模式 | 派对实验室</title>
+  <title>Tag: 观察者模式 | 派对实验室</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="提升REQ/REP模式的客户端侧可靠性，由于在此模式下，客户端与服务端严格遵循你一下我一下的乒乓规则，当然现实中不可能这么配合，比如服务器突然挂了，客户端就会阻塞在socket.recv(),然后过段时间，服务器又ok了，客户端也自动重连。但是有的场景客户端需要及时知道服务端状况而不是在那一直等，需要返回个错误之类。 1234567891011121314151617181920212223">
-<meta name="keywords" content="python,ZMQ,PyZMQ,可靠性,请求应答模式">
-<meta property="og:type" content="article">
-<meta property="og:title" content="PyZMQ一种可靠的请求应答模式--超时重试模式">
-<meta property="og:url" content="https://ansgoo.github.io/Ranger/2019/06/22/PyZMQ一种可靠的请求应答模式--超时重试模式/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="派对实验室">
+<meta property="og:url" content="https://ansgoo.github.io/Ranger/tags/观察者模式/index.html">
 <meta property="og:site_name" content="派对实验室">
-<meta property="og:description" content="提升REQ/REP模式的客户端侧可靠性，由于在此模式下，客户端与服务端严格遵循你一下我一下的乒乓规则，当然现实中不可能这么配合，比如服务器突然挂了，客户端就会阻塞在socket.recv(),然后过段时间，服务器又ok了，客户端也自动重连。但是有的场景客户端需要及时知道服务端状况而不是在那一直等，需要返回个错误之类。 1234567891011121314151617181920212223">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-22T13:52:17.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PyZMQ一种可靠的请求应答模式--超时重试模式">
-<meta name="twitter:description" content="提升REQ/REP模式的客户端侧可靠性，由于在此模式下，客户端与服务端严格遵循你一下我一下的乒乓规则，当然现实中不可能这么配合，比如服务器突然挂了，客户端就会阻塞在socket.recv(),然后过段时间，服务器又ok了，客户端也自动重连。但是有的场景客户端需要及时知道服务端状况而不是在那一直等，需要返回个错误之类。 1234567891011121314151617181920212223">
+<meta name="twitter:title" content="派对实验室">
   
     <link rel="alternative" href="/atom.xml" title="派对实验室" type="application/atom+xml">
   
@@ -145,38 +140,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-PyZMQ一种可靠的请求应答模式--超时重试模式" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      PyZMQ一种可靠的请求应答模式--超时重试模式
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/Ranger/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/Ranger/2019/06/22/PyZMQ请求应答模式-观察者模式/" class="archive-article-date">
+  	<time datetime="2019-06-22T14:21:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/Ranger/2019/06/22/PyZMQ请求应答模式-观察者模式/">PyZMQ请求应答模式-观察者模式</a>
     </h1>
   
 
-        
-        <a href="/Ranger/2019/06/22/PyZMQ一种可靠的请求应答模式--超时重试模式/" class="archive-article-date">
-  	<time datetime="2019-06-22T13:35:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>   提升REQ/REP模式的客户端侧可靠性，由于在此模式下，客户端与服务端严格遵循你一下我一下的乒乓规则，当然现实中不可能这么配合，比如服务器突然挂了，客户端就会阻塞在socket.recv(),然后过段时间，服务器又ok了，客户端也自动重连。但是有的场景客户端需要及时知道服务端状况而不是在那一直等，需要返回个错误之类。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 请求端</span></span><br><span class="line"><span class="keyword">import</span> sys  </span><br><span class="line"><span class="keyword">import</span> zmq  </span><br><span class="line">  </span><br><span class="line">REQUEST_TIMEOUT = <span class="number">2500</span>  </span><br><span class="line">REQUEST_RETRIES = <span class="number">3</span>  </span><br><span class="line">SERVER_ENDPOINT = <span class="string">"tcp://localhost:5555"</span>  </span><br><span class="line">  </span><br><span class="line">context = zmq.Context(<span class="number">1</span>)  </span><br><span class="line">  </span><br><span class="line">prin(<span class="string">"I: Connecting to server…"</span>) </span><br><span class="line">client = context.socket(zmq.REQ)  </span><br><span class="line">client.connect(SERVER_ENDPOINT)  </span><br><span class="line">  </span><br><span class="line">poll = zmq.Poller()  </span><br><span class="line">poll.register(client, zmq.POLLIN)  </span><br><span class="line">  </span><br><span class="line">sequence = <span class="number">0</span>  </span><br><span class="line">retries_left = REQUEST_RETRIES  </span><br><span class="line"><span class="keyword">while</span> retries_left:  </span><br><span class="line">    sequence += <span class="number">1</span>  </span><br><span class="line">    request = str(sequence)  </span><br><span class="line">    print(<span class="string">"I: Sending (%s)"</span> % request)</span><br><span class="line">    client.send(request)  </span><br><span class="line">  </span><br><span class="line">    expect_reply = <span class="literal">True</span>  </span><br><span class="line">    <span class="keyword">while</span> expect_reply:  </span><br><span class="line">        socks = dict(poll.poll(REQUEST_TIMEOUT))  </span><br><span class="line">        <span class="keyword">if</span> socks.get(client) == zmq.POLLIN:  </span><br><span class="line">            reply = client.recv()  </span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> reply:  </span><br><span class="line">                <span class="keyword">break</span>  </span><br><span class="line">            <span class="keyword">if</span> int(reply) == sequence:  </span><br><span class="line">                prin(<span class="string">"I: Server replied OK (%s)"</span> % reply) </span><br><span class="line">                retries_left = REQUEST_RETRIES  </span><br><span class="line">                expect_reply = <span class="literal">False</span>  </span><br><span class="line">            <span class="keyword">else</span>:  </span><br><span class="line">                prin(<span class="string">"E: Malformed reply from server: %s"</span> % reply)</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            print(<span class="string">"W: No response from server, retrying…"</span>)  </span><br><span class="line">            <span class="comment"># Socket is confused. Close and remove it.  </span></span><br><span class="line">            client.setsockopt(zmq.LINGER, <span class="number">0</span>)  </span><br><span class="line">            client.close()  </span><br><span class="line">            poll.unregister(client)  </span><br><span class="line">            retries_left -= <span class="number">1</span>  </span><br><span class="line">            <span class="keyword">if</span> retries_left == <span class="number">0</span>:  </span><br><span class="line">                print(<span class="string">"E: Server seems to be offline, abandoning"</span>) </span><br><span class="line">                <span class="keyword">break</span>  </span><br><span class="line">            print(<span class="string">"I: Reconnecting and resending (%s)"</span> % request) </span><br><span class="line">            <span class="comment"># Create new connection  </span></span><br><span class="line">            client = context.socket(zmq.REQ)  </span><br><span class="line">            client.connect(SERVER_ENDPOINT)  </span><br><span class="line">            poll.register(client, zmq.POLLIN)  </span><br><span class="line">            client.send(request)  </span><br><span class="line">  </span><br><span class="line">context.term()</span><br></pre></td></tr></table></figure>
-<p>重点是：使用poll.poll(REQUEST_TIMEOUT)，来执行一个限时读操作,如果时间段内该REQ socket没收到数据，视作服务端故障,这时就尝试先关闭当前socket,然后重连服务端,重发request。</p>
-<p>另外,注意client.setsockopt(zmq.LINGER, 0)设置linger为0，即马上丢掉socket中未处理的消息,否则context,term()啥时能执行完就不知道了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务于端</span></span><br><span class="line"><span class="comment">#coding=utf-8  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint  </span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> zmq  </span><br><span class="line">  </span><br><span class="line">context = zmq.Context(<span class="number">1</span>)  </span><br><span class="line">server = context.socket(zmq.REP)  </span><br><span class="line">server.bind(<span class="string">"tcp://*:5555"</span>)  </span><br><span class="line">  </span><br><span class="line">cycles = <span class="number">0</span>  </span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">    request = server.recv()  </span><br><span class="line">    cycles += <span class="number">1</span>  </span><br><span class="line">    <span class="comment"># Simulate various problems, after a few cycles  </span></span><br><span class="line">    <span class="keyword">if</span> cycles &gt; <span class="number">3</span> <span class="keyword">and</span> randint(<span class="number">0</span>, <span class="number">3</span>) == <span class="number">0</span>:  </span><br><span class="line">        print(<span class="string">"I: Simulating a crash"</span>) </span><br><span class="line">        <span class="keyword">break</span>  </span><br><span class="line">    <span class="keyword">elif</span> cycles &gt; <span class="number">3</span> <span class="keyword">and</span> randint(<span class="number">0</span>, <span class="number">3</span>) == <span class="number">0</span>:  </span><br><span class="line">        print(<span class="string">"I: Simulating CPU overload"</span>)</span><br><span class="line">        time.sleep(<span class="number">2</span>)  </span><br><span class="line">        <span class="keyword">break</span>  </span><br><span class="line">    print(<span class="string">"I: Normal request (%s)"</span> % request) </span><br><span class="line">    time.sleep(<span class="number">1</span>) <span class="comment"># Do some heavy work  </span></span><br><span class="line">    server.send(request)  </span><br><span class="line">  </span><br><span class="line">server.close()  </span><br><span class="line">context.term()</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,127 +187,29 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">可靠性</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">请求应答模式</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">请求应答模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">观察者模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://ansgoo.github.io/Ranger/2019/06/22/PyZMQ一种可靠的请求应答模式--超时重试模式/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/Ranger/2019/06/22/ZeroMQ简介/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ZeroMQ简介</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "https://ansgoo.github.io/Ranger/Ranger/2019/06/22/PyZMQ一种可靠的请求应答模式--超时重试模式/", 
-    sourceId: "PyZMQ一种可靠的请求应答模式--超时重试模式",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -337,9 +232,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -489,6 +384,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">定时任务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
               </li>
             
             <div class="clearfix"></div>

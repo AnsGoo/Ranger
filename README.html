@@ -6,24 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ansgoo.github.io/Ranger">
-  <title>ZeroMQ简介 | 派对实验室</title>
+  <title>派对实验室</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述引用官方的说法： “ZMQ (以下 ZeroMQ 简称 ZMQ)是一个简单好用的传输层，像框架一样的一个 socket library，他使得 Socket 编程更加简单、简洁和性能更高。是一个消息处理队列库，可在多个线程、内核和主机盒之间弹性伸缩。ZMQ 的明确目标是“成为标准网络协议栈的一部分，之后进入 Linux 内核”。现在还未看到它们的成功。但是，它无疑是极具前景的、并且是人们更加需">
-<meta name="keywords" content="ZMQ,ZeroMQ">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ZeroMQ简介">
-<meta property="og:url" content="https://ansgoo.github.io/Ranger/2019/06/22/ZeroMQ简介/index.html">
+  <meta name="description" content="RangerRanger ‘s Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="派对实验室">
+<meta property="og:url" content="https://ansgoo.github.io/Ranger/README.html">
 <meta property="og:site_name" content="派对实验室">
-<meta property="og:description" content="概述引用官方的说法： “ZMQ (以下 ZeroMQ 简称 ZMQ)是一个简单好用的传输层，像框架一样的一个 socket library，他使得 Socket 编程更加简单、简洁和性能更高。是一个消息处理队列库，可在多个线程、内核和主机盒之间弹性伸缩。ZMQ 的明确目标是“成为标准网络协议栈的一部分，之后进入 Linux 内核”。现在还未看到它们的成功。但是，它无疑是极具前景的、并且是人们更加需">
+<meta property="og:description" content="RangerRanger ‘s Blog">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ansgoo.github.io/Ranger/2019/06/22/ZeroMQ简介/rep-req.jpeg">
-<meta property="og:image" content="https://ansgoo.github.io/Ranger/2019/06/22/ZeroMQ简介/pub-sub.jpeg">
-<meta property="og:image" content="https://ansgoo.github.io/Ranger/2019/06/22/ZeroMQ简介/push-pull.jpeg">
-<meta property="og:updated_time" content="2019-06-22T11:59:29.573Z">
+<meta property="og:updated_time" content="2019-05-04T10:18:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZeroMQ简介">
-<meta name="twitter:description" content="概述引用官方的说法： “ZMQ (以下 ZeroMQ 简称 ZMQ)是一个简单好用的传输层，像框架一样的一个 socket library，他使得 Socket 编程更加简单、简洁和性能更高。是一个消息处理队列库，可在多个线程、内核和主机盒之间弹性伸缩。ZMQ 的明确目标是“成为标准网络协议栈的一部分，之后进入 Linux 内核”。现在还未看到它们的成功。但是，它无疑是极具前景的、并且是人们更加需">
-<meta name="twitter:image" content="https://ansgoo.github.io/Ranger/2019/06/22/ZeroMQ简介/rep-req.jpeg">
+<meta name="twitter:title" content="派对实验室">
+<meta name="twitter:description" content="RangerRanger ‘s Blog">
   
     <link rel="alternative" href="/atom.xml" title="派对实验室" type="application/atom+xml">
   
@@ -149,73 +144,12 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ZeroMQ简介" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      ZeroMQ简介
-    </h1>
-  
-
-        
-        <a href="/Ranger/2019/06/22/ZeroMQ简介/" class="archive-article-date">
-  	<time datetime="2019-06-22T11:14:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-22</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>引用官方的说法： “ZMQ (以下 ZeroMQ 简称 ZMQ)是一个简单好用的传输层，像框架一样的一个 socket library，他使得 Socket 编程更加简单、简洁和性能更高。是一个消息处理队列库，可在多个线程、内核和主机盒之间弹性伸缩。ZMQ 的明确目标是“成为标准网络协议栈的一部分，之后进入 Linux 内核”。现在还未看到它们的成功。但是，它无疑是极具前景的、并且是人们更加需要的“传统”BSD 套接字之上的一层封装。ZMQ 让编写高性能网络应用程序极为简单和有趣。”</p>
-<p>近几年有关”Message Queue”的项目层出不穷，知名的就有十几种，这主要是因为后摩尔定律时代，分布式处理逐渐成为主流，业界需要一套标准来解决分布式计算环境中节点之间的消息通信。几年的竞争下来，Apache 基金会旗下的符合 AMQP/1.0标准的 RabbitMQ 已经得到了广泛的认可，成为领先的 MQ 项目。</p>
-<p>与 RabbitMQ 相比，ZMQ 并不像是一个传统意义上的消息队列服务器，事实上，它也根本不是一个服务器，它更像是一个底层的网络通讯库，在 Socket API 之上做了一层封装，将网络通讯、进程通讯和线程通讯抽象为统一的 API 接口。</p>
-<h3 id="消息模型"><a href="#消息模型" class="headerlink" title="消息模型"></a>消息模型</h3><p>ZMQ 提供了三个基本的通信模型，分别是<code>Request-Reply</code>，<code>Publisher-Subscriber</code>，<code>Parallel Pipeline</code>,我们从这三种模式一窥 ZMQ 的究竟</p>
-<h4 id="请求应答模式"><a href="#请求应答模式" class="headerlink" title="请求应答模式"></a>请求应答模式</h4><p>由 Client 发起请求，并等待 Server 回应请求。请求端发送一个简单的 hello，服务端则回应一个 world。请求端和服务端都可以是 1:N 的模型。通常把 1 认为是 Server ，N 认为是 Client 。ZMQ 可以很好的支持路由功能（实现路由功能的组件叫作 Device），把 1:N 扩展为N:M （只需要加入若干路由节点。如下图</p>
-<p><img src="/Ranger/2019/06/22/ZeroMQ简介/rep-req.jpeg" alt="请求应答模式示意图"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#响应端代码</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> zmq</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">context = zmq.Context()</span><br><span class="line">socket = context.socket(zmq.REP)</span><br><span class="line">socket.bind(<span class="string">"tcp://*:5555"</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    message = socket.recv()</span><br><span class="line">    print(<span class="string">"Received request:%s"</span>, %(message))</span><br><span class="line">    time.sleep (<span class="number">1</span>)       </span><br><span class="line">    socket.send(time_utils.get_format_timestamp()+<span class="string">" World"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#请求端代码</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> zmq</span><br><span class="line">context = zmq.Context()</span><br><span class="line">socket = context.socket(zmq.REQ)</span><br><span class="line">socket.connect (<span class="string">"tcp://localhost:5555"</span>)</span><br><span class="line"><span class="keyword">for</span> request <span class="keyword">in</span> range (<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">    socket.send (<span class="string">"Hello"</span>)</span><br><span class="line">    message = socket.recv()</span><br><span class="line">    print(<span class="string">"Received reply ：%s"</span>%(message))</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ol>
-<li>服务端和客户端无论谁先启动，效果是相同的，这点不同于 Socket。</li>
-<li>在服务端收到信息以前，程序是阻塞的，会一直等待客户端连接上来。</li>
-<li>服务端收到信息以后，会 send 一个“World”给客户端。值得注意的是一定是 client 连接上来以后，send 消息给 Server，然后 Server 再 rev 然后响应 client，这种一问一答式的。如果 Server 先 send，client 先 rev 是会报错的。</li>
-<li>ZMQ 通信通信单元是消息，他除了知道 Bytes 的大小，他并不关心的消息格式。因此，你可以使用任何你觉得好用的数据格式。Xml、Protocol Buffers、Thrift、json 等等。<br>虽然可以使用 ZMQ 实现 HTTP 协议，但是，这绝不是他所擅长的。</li>
-<li>通常bind为绑定本地的端口，而connect为连接远程端口，不一定是服务端绑定，客户端连接，至于谁绑定谁连接要根据实际情况来决定。</li>
-<li>请求发出必须有应答不然会报错，相应端尚未完成一个请求响应不能接受第二请求</li>
-</ol>
-</blockquote>
-<h3 id="发布订阅模型"><a href="#发布订阅模型" class="headerlink" title="发布订阅模型"></a>发布订阅模型</h3><p>我们可以想象一下天气预报的订阅模式，由一个节点提供信息源，由其他的节点，接受信息源的信息</p>
-<p><img src="/Ranger/2019/06/22/ZeroMQ简介/pub-sub.jpeg" alt="请求应答模式示意图"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#发布端代码</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> zmq</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> common <span class="keyword">import</span> time_utils</span><br><span class="line">context = zmq.Context()</span><br><span class="line">socket = context.socket(zmq.PUB)</span><br><span class="line">socket.bind(<span class="string">"tcp://*:5555"</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    message = time_utils.get_format_timestamp()+<span class="string">":Publish message"</span></span><br><span class="line">    print(<span class="string">"Publish Message:%s "</span>, %(message))</span><br><span class="line">    time.sleep (<span class="number">1</span>)</span><br><span class="line">    socket.send(message)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> zmq</span><br><span class="line">context = zmq.Context()</span><br><span class="line">socket = context.socket(zmq.SUB)</span><br><span class="line">socket.connect (<span class="string">"tcp://localhost:5555"</span>)</span><br><span class="line">socket.setsockopt(zmq.SUBSCRIBE, <span class="string">''</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    message = socket.recv()</span><br><span class="line">    print(<span class="string">"Receive Message:%s"</span>+%(message))</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ol>
-<li>与请求应答模式不同的是Socket 的类型变成 SOCKET_PUB 和 SOCKET_SUB 类型。客户端需要$subscriber-&gt;setSockOpt (ZMQ::SOCKOPT_SUBSCRIBE, $filter);设置一个过滤值，相当于设定一个订阅频道，否则什么信息也收不到。</li>
-<li>服务器端一直不断的广播中，如果中途有 Subscriber 端退出，并不影响他继续的广播，当 Subscriber 再连接上来的时候，收到的就是后来发送的新的信息了。这对比较晚加入的，或者是中途离开的订阅者，必然会丢失掉一部分信息。<br>但是，如果 Publisher 中途离开，所有的 Subscriber 会阻塞住，等待 Publisher 再上线的时候，会继续接受信息。</li>
-</ol>
-</blockquote>
-<h3 id="管道模型"><a href="#管道模型" class="headerlink" title="管道模型"></a>管道模型</h3><p>这个是 PUSH/PULL 模式，又叫做pipeline管道模式,取其一去不回头之意，一推一拉，数据滚滚向前。<br>这种socket封装的原本用意呢，是把数据交给一组worker端干活，PUSH会把任务均匀的（这个好像是zmq的招牌）的分配给下游的worker们，保证大家都有活干，如下图：<br><img src="/Ranger/2019/06/22/ZeroMQ简介/push-pull.jpeg" alt="请求应答模式示意图"></p>
-<blockquote>
-<p>Producer:产生代处理数据，并将数据push出去</p>
-</blockquote>
-<blockquote>
-<p>consumer(worker):pull到来自producer的数据，处理后,push出去</p>
-</blockquote>
-<blockquote>
-<p>resultcolltor:pull到consumer的数据处理结果</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生产者</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> zmq  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">producer</span><span class="params">()</span>:</span>  </span><br><span class="line">    context = zmq.Context()  </span><br><span class="line">    zmq_socket = context.socket(zmq.PUSH)  </span><br><span class="line">    zmq_socket.bind(<span class="string">"tcp://127.0.0.1:5557"</span>)  </span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> xrange(<span class="number">2000</span>):  </span><br><span class="line">        work_message = &#123; <span class="string">'num'</span> : num &#125;  </span><br><span class="line">        zmq_socket.send_json(work_message)  </span><br><span class="line">producer()</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 消费者</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> zmq  </span><br><span class="line"><span class="keyword">import</span> random  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">consumer</span><span class="params">()</span>:</span>  </span><br><span class="line">    consumer_id = random.randrange(<span class="number">1</span>,<span class="number">10005</span>)  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">"I am consumer #%s"</span> % (consumer_id)  </span><br><span class="line">    context = zmq.Context()  </span><br><span class="line">    <span class="comment"># recieve work  </span></span><br><span class="line">    consumer_receiver = context.socket(zmq.PULL)  </span><br><span class="line">    consumer_receiver.connect(<span class="string">"tcp://127.0.0.1:5557"</span>)  </span><br><span class="line">    <span class="comment"># send work  </span></span><br><span class="line">    consumer_sender = context.socket(zmq.PUSH)  </span><br><span class="line">    consumer_sender.connect(<span class="string">"tcp://127.0.0.1:5558"</span>)  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:  </span><br><span class="line">        work = consumer_receiver.recv_json()  </span><br><span class="line">        data = work[<span class="string">'num'</span>]  </span><br><span class="line">        result = &#123; <span class="string">'consumer'</span> : consumer_id, <span class="string">'num'</span> : data&#125;  </span><br><span class="line">        <span class="keyword">if</span> data%<span class="number">2</span> == <span class="number">0</span>:   </span><br><span class="line">            consumer_sender.send_json(result)  </span><br><span class="line">consumer()</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#汇总收集者</span></span><br><span class="line"><span class="keyword">import</span> time  </span><br><span class="line"><span class="keyword">import</span> zmq  </span><br><span class="line"><span class="keyword">import</span> pprint  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">result_collector</span><span class="params">()</span>:</span>  </span><br><span class="line">    context = zmq.Context()  </span><br><span class="line">    results_receiver = context.socket(zmq.PULL)  </span><br><span class="line">    results_receiver.bind(<span class="string">"tcp://127.0.0.1:5558"</span>)  </span><br><span class="line">    collecter_data = &#123;&#125;  </span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">1000</span>):  </span><br><span class="line">        result = results_receiver.recv_json()  </span><br><span class="line">        <span class="keyword">if</span> collecter_data.has_key(result[<span class="string">'consumer'</span>]):  </span><br><span class="line">            collecter_data[result[<span class="string">'consumer'</span>]] = collecter_data[result[<span class="string">'consumer'</span>]] + <span class="number">1</span>  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            collecter_data[result[<span class="string">'consumer'</span>]] = <span class="number">1</span>  </span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">999</span>:  </span><br><span class="line">            pprint.pprint(collecter_data)  </span><br><span class="line">  </span><br><span class="line">result_collector()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>生产者 使用的是 SOCKET_PUSH，将任务分给消费者节点上。而消费者使用 SOCKET_PULL 从上游接受任务，并使用 SOCKET_PUSH 将结果汇集到 收集者。值得注意的是，任务的分发的时候也同样有一个负载均衡的路由功能，消费者可以随时自由加入，生产者可以均衡将任务分发出去。</p>
-</blockquote>
-<blockquote>
-<p>与发布订阅不同的是，生产者发布出去消息如果没有被即使消费，那么会直接保存在缓存中，直到消费者上线将消息消费了。但是如果长期没有消费者消费消息，当达到一定的标准是，生产者会将最开始的数据丢弃，整个消息的消费遵循先进先出原则</p>
-</blockquote>
+        <h1 id="Ranger"><a href="#Ranger" class="headerlink" title="Ranger"></a>Ranger</h1><p>Ranger ‘s Blog</p>
 
       
 
@@ -224,21 +158,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ZMQ</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ZeroMQ</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -289,7 +208,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://ansgoo.github.io/Ranger/2019/06/22/ZeroMQ简介/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ansgoo.github.io/Ranger/README.html" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,25 +220,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/Ranger/2019/06/22/PyZMQ一种可靠的请求应答模式-超时重试模式/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          PyZMQ一种可靠的请求应答模式--超时重试模式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/Ranger/2019/06/21/一种基于django-restFramework通用型增删改查方案/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">一种基于django-restFramework通用型增删改查方案</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -345,8 +245,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://ansgoo.github.io/Ranger/Ranger/2019/06/22/ZeroMQ简介/", 
-    sourceId: "ZeroMQ简介",
+    url: "https://ansgoo.github.io/Ranger/Ranger/README.html", 
+    sourceId: "",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -381,7 +281,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
