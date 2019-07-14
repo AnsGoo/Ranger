@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ansgoo.github.io/Ranger">
-  <title>Tag: Express | 派对实验室</title>
+  <title>zmq常见socket属性设置 | 派对实验室</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="派对实验室">
-<meta property="og:url" content="https://ansgoo.github.io/Ranger/tags/Express/index.html">
+  <meta name="description" content="语法1socket.setsockopt(option_name, option_value,option_len) 注意：除了以下属性，所有的属性均需要在对socket进行bind/connect操作之前设置：zmq.SUBSCRIBE, zmq.UNSUBSCRIBE, zmq.LINGER, zmq.ROUTER_HANDOVER,zmq.ROUTER_MANDATORY, zmq.PROB">
+<meta name="keywords" content="python,zmq,setsockopt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zmq常见socket属性设置">
+<meta property="og:url" content="https://ansgoo.github.io/Ranger/2019/07/14/zmq常见socket属性设置/index.html">
 <meta property="og:site_name" content="派对实验室">
+<meta property="og:description" content="语法1socket.setsockopt(option_name, option_value,option_len) 注意：除了以下属性，所有的属性均需要在对socket进行bind/connect操作之前设置：zmq.SUBSCRIBE, zmq.UNSUBSCRIBE, zmq.LINGER, zmq.ROUTER_HANDOVER,zmq.ROUTER_MANDATORY, zmq.PROB">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-14T16:22:32.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="派对实验室">
+<meta name="twitter:title" content="zmq常见socket属性设置">
+<meta name="twitter:description" content="语法1socket.setsockopt(option_name, option_value,option_len) 注意：除了以下属性，所有的属性均需要在对socket进行bind/connect操作之前设置：zmq.SUBSCRIBE, zmq.UNSUBSCRIBE, zmq.LINGER, zmq.ROUTER_HANDOVER,zmq.ROUTER_MANDATORY, zmq.PROB">
   
     <link rel="alternative" href="/atom.xml" title="派对实验室" type="application/atom+xml">
   
@@ -140,64 +145,935 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-zmq常见socket属性设置" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Ranger/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/Ranger/2019/05/26/Express入门/" class="archive-article-date">
-  	<time datetime="2019-05-26T03:31:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/Ranger/2019/05/26/Express入门/">Express入门</a>
+    <h1 class="article-title" itemprop="name">
+      zmq常见socket属性设置
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/Ranger/2019/07/14/zmq常见socket属性设置/" class="archive-article-date">
+  	<time datetime="2019-07-14T02:51:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.setsockopt(option_name, option_value,option_len)</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：除了以下属性，所有的属性均需要在对socket进行bind/connect操作之前设置：<br><code>zmq.SUBSCRIBE</code>, <code>zmq.UNSUBSCRIBE</code>, <code>zmq.LINGER</code>, <code>zmq.ROUTER_HANDOVER</code>,<br><code>zmq.ROUTER_MANDATORY</code>, <code>zmq.PROBE_ROUTER</code>, <code>zmq.XPUB_VERBOSE</code>, <code>zmq.REQ_CORRELATE</code>, 和<code>zmq.REQ_RELAXED</code></p>
+<p>特别的，安全的属性也可以在bind/connect操作之后生效，并且可以随时进行修改并影响之后的bind/connect操作。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p><code>socket.setsockopt()</code>函数会对socket参数指定的socket进行设置，设置的属性由<code>option_name</code>参数指定，属性值由参数<code>option_value</code>指定。<code>option_len</code>参数指定属性值的数据存储空间的大小。</p>
+<h4 id="zmq-SNDHWM-：对向外发送的消息设置高水位（最大缓存量"><a href="#zmq-SNDHWM-：对向外发送的消息设置高水位（最大缓存量" class="headerlink" title="zmq.SNDHWM ：对向外发送的消息设置高水位（最大缓存量"></a><code>zmq.SNDHWM</code> ：对向外发送的消息设置高水位（最大缓存量</h4><p><code>zmq.SNDHWM</code>属性将会设置socket参数指定的socket对外发送的消息的高水位。高水位是一个硬限制，它会限制每一个与此socket相连的在内存中排队的未处理的消息数目的最大值。0值代表着没有限制。</p>
+<p>如果已经到达了规定的限制，socket就需要进入一种异常的状态，表现形式因socket类型而异。socket会进行适当的调节，比如阻塞或者丢弃已发送的消息。请从zmq_socket(3)函数中查看更多细节，获取每种类型的socket的精确的行为。</p>
+<p>ZMQ并不能保证可以接收像<code>zmq.SNDHWM</code>参数一样多的消息，而实际的限制可能在60~70%一下，这取决于这个socket上的消息流。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>消息类型</td>
+<td>1000</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RCVHWM：对进入socket的消息设置高水位"><a href="#zmq-RCVHWM：对进入socket的消息设置高水位" class="headerlink" title="zmq.RCVHWM：对进入socket的消息设置高水位"></a><code>zmq.RCVHWM</code>：对进入socket的消息设置高水位</h4><p><code>zmq.RCVHWM</code>属性将会设置socket参数指定的socket进入的消息的高水位。高水位是一个硬限制，它会限制每一个与此socket相连的在内存中排队的未处理的消息数目的最大值。0值代表着没有限制。</p>
+<p>如果已经到达了规定的限制，socket就需要进入一种异常的状态，表现形式因socket类型而异。socket会进行适当的调节，比如阻塞或者丢弃被发送的消息。请从zmq_socket(3)函数中查看更多细节，获取每种类型的socket的精确的行为。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>消息类型</td>
+<td>1000</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-AFFINITY：设置I-O线程关联"><a href="#zmq-AFFINITY：设置I-O线程关联" class="headerlink" title="zmq.AFFINITY：设置I/O线程关联"></a><code>zmq.AFFINITY</code>：设置I/O线程关联</h4><p><code>zmq.AFFINITY</code>属性会对socket参数指定的socket新创建的链接设置I/O线程关联。</p>
+<p>关联指明了和scoket相关的context上的哪个线程池中的哪个线程来处理新创建的链接。0值表示没有关联，这意味着工作将在线程池中平等的向所有进程进行分发。对于非0值，最低位对应线程1，第二低位对应线程2,等等。比如，设置的值是3的话，说明socket上这之后的链接请求将被I/P线程1和2处理。</p>
+<p>请参见zmq_init(3)函数了解更多关于对I/O线程分配的细节。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uint64</td>
+<td>N/A(bitmap)</td>
+<td>0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-SUBSCRIBE：创建消息过滤标志"><a href="#zmq-SUBSCRIBE：创建消息过滤标志" class="headerlink" title="zmq.SUBSCRIBE：创建消息过滤标志"></a><code>zmq.SUBSCRIBE</code>：创建消息过滤标志</h4><p><code>zmq.SUBSCRIBE</code>属性将会在<code>zmq.SUB</code>类型的socekt上创建一个新的消息过滤标志。新建立的ZMQ_SUB类型socket会对进入socket的所有消息进行过滤，这样你就可以使用这个属性来建立最初的消息过滤项。</p>
+<p>一个option_value的长度是0的过滤属性会订阅所有的广播消息。一个非空的option_value值会只订阅所有以option_value的值为前缀的消息。一个ZMQ_SUB类型的socket可以附加多个过滤条件，只要一个消息符合过滤条件中的任何一个就会被接受。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>zmq.SUB</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-UNSUBSCRIBE：移除消息过滤选项"><a href="#zmq-UNSUBSCRIBE：移除消息过滤选项" class="headerlink" title="zmq.UNSUBSCRIBE：移除消息过滤选项"></a><code>zmq.UNSUBSCRIBE</code>：移除消息过滤选项</h4><p><code>zmq.UNSUBSCRIBE</code>选项会移除一个<code>zmq.SUB</code>类型中已经存在的消息过滤项。需要被移除的过滤选项必须是已经使用<code>zmq.SUBSCRIBE</code>选项建立了的。如果添加了几个相同的过滤项，<code>zmq.UNSUBSCRIBE</code>选项只会移除其中的一个，其它的可以继续使用。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>zmq.SUB</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-IDENTITY：设置socket-身份ID"><a href="#zmq-IDENTITY：设置socket-身份ID" class="headerlink" title="zmq.IDENTITY：设置socket 身份ID"></a><code>zmq.IDENTITY</code>：设置socket 身份ID</h4><p><code>zmq.IDENTITY</code>选项会设置socket的身份ID。socket的身份ID只会能在请求/回复模式中使用。也就是说，可以使用ROUTER类型的socket进行socket串联，根据给定的身份ID可以对消息进行路由。</p>
+<p>身份ID至少有1 B的长度，最多有255 B的长度。以0位开始的身份ID由ZMQ保留使用。</p>
+<p>如果两个socket使用相同的身份ID向第三方进行连接，后果是不确定的。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据</td>
+<td>N/A</td>
+<td>None</td>
+<td>zmq.REQ, zmq.REP, zmq.ROUTER, zmq.DEALER</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RATE：设置广播数据的频率"><a href="#zmq-RATE：设置广播数据的频率" class="headerlink" title="zmq.RATE：设置广播数据的频率"></a><code>zmq.RATE</code>：设置广播数据的频率</h4><p><code>zmq.RATE</code>属性会对socket的接收和发送广播（比如zmq.pgm()）的频率最大值进行设置。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>千比特/秒</td>
+<td>100</td>
+<td>使用多路广播时，对所有socket类型都可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RECOVERY-IVL：设置多路广播恢复时间"><a href="#zmq-RECOVERY-IVL：设置多路广播恢复时间" class="headerlink" title="zmq.RECOVERY_IVL：设置多路广播恢复时间"></a><code>zmq.RECOVERY_IVL</code>：设置多路广播恢复时间</h4><p><code>zmq.RECOVERY_IVL</code>属性将会对socket参数指定的socket多路广播恢复时间进行设置。恢复时间决定了，当一个接收端从一个广播组退出后再连接上来之前，在数据丢失，导致数据不可恢复前的最大时间间隔，时间以毫秒为单位。</p>
+<p>注意：当设置较大的恢复时间时，这回非常耗内存。比如，传输速率是1Gbps时，1分钟长的回复时间，会导致7GB的内存消耗。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>毫秒</td>
+<td>10000</td>
+<td>使用多路广播时，对所有socket类型都可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-SNDBUF：设置内核传输缓冲区大小"><a href="#zmq-SNDBUF：设置内核传输缓冲区大小" class="headerlink" title="zmq.SNDBUF：设置内核传输缓冲区大小"></a><code>zmq.SNDBUF</code>：设置内核传输缓冲区大小</h4><p><code>zmq.SNDBUF</code>属性会对socekt参数指定的socket设置底层内核的传输缓存大小，以B为单位进行设置。设置的属性值是0，则意味着使用OS的默认值。你可以查看你的操作系统手册来获得SO_SNDBUF属性更详细的信息。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>B(字节)</td>
+<td>0</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RCVBUF：设置内核传输缓冲区大小"><a href="#zmq-RCVBUF：设置内核传输缓冲区大小" class="headerlink" title="zmq.RCVBUF：设置内核传输缓冲区大小"></a><code>zmq.RCVBUF</code>：设置内核传输缓冲区大小</h4><p><code>zmq.RCVBUF</code>属性会对socekt参数指定的socket设置底层内核的传输缓存大小，以B为单位进行设置。设置的属性值是0，则意味着使用OS的默认值。你可以查看你的操作系统手册来获得SO_RCVBUF属性更详细的信息。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>B(字节)</td>
+<td>0</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-LINGER：为socket关闭设置停留时间"><a href="#zmq-LINGER：为socket关闭设置停留时间" class="headerlink" title="zmq.LINGER：为socket关闭设置停留时间"></a><code>zmq.LINGER</code>：为socket关闭设置停留时间</h4><p><code>zmq.LINGER</code>属性会给指定的socket设定关闭前的停留时间。停留时间指定了在对一个socket调用<code>zmq_close()</code>函数之后，这个socekt上即将被发送但还没有被发送到对端的消息在内存中继续停留的时间。这个属性进而还会影响到与这个scoket相关联的context上<code>zmq_term()</code>操作的进行终结的结果。下面简述了不同的行为：</p>
+<p>属性值 -1表示无限的停留时间。还没被发送的消息在socket调用<code>zmq.close()</code>操作之后不会被丢弃；试图使用<code>zmq_term()</code>操作对context进行终结的操作会被阻塞，直到所有没有被发送的消息被发往对端为止。</p>
+<p>属性值0 表示没有停留时间。当使用<code>zmq_close()</code>函数将socket关闭的时候，所有没有被发送呃消息都会被丢弃。</p>
+<p>属性是正数值表示设置一个毫秒为单位的停留时间。在第socket调用<code>zmq_close()</code>操作后，还没有发送的消息不会被丢弃；试图使用<code>zmq_term()</code>对于此scoket相关联的context进行终结的时候会被阻塞，直到所有未被发送的消息都被发往对端；或者停留时间已经到达，此时所有未发送的消息都会被丢弃。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>毫秒</td>
+<td>-1</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RECONNECT-IVL：设置重连间隔"><a href="#zmq-RECONNECT-IVL：设置重连间隔" class="headerlink" title="zmq.RECONNECT_IVL：设置重连间隔"></a><code>zmq.RECONNECT_IVL</code>：设置重连间隔</h4><p><code>zmq.RECONNECT_IVL</code>属性会设置指定的scoket的初始套接字重连间隔。重连间隔是使用面向连接的传输方式的时候，当与对端的链接断开后，尝试再次进行连接时的ZMQ周期。属性值是 -1表示不进行重连。</p>
+<p>ZMQ中的重连间隔可能是个随机的较大数值，以防在拓扑结构中重连风暴的发生。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>毫秒</td>
+<td>100</td>
+<td>当使用面向连接的传输方式时，所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RECONNECT-IVL-MAX：设置重连间隔的最大值"><a href="#zmq-RECONNECT-IVL-MAX：设置重连间隔的最大值" class="headerlink" title="zmq.RECONNECT_IVL_MAX：设置重连间隔的最大值"></a><code>zmq.RECONNECT_IVL_MAX</code>：设置重连间隔的最大值</h4><p><code>zmq.RECONNECT_IVL_MAX</code>属性会设置指定的scoket的重连间隔最大值。这是在ZMQ重连周期之间的最大值。在每次的重连企图中，重连间隔值都会是前一次的两倍，直到达到<code>zmq.RECONNECT_IVL_MAX</code>值。这允许指数补偿策略。默认值表示不执行指数补偿策略，并且重连间隔时间只基于<code>zmq.RECONNECT_IVL</code>进行计算。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>毫秒</td>
+<td>0(只使用<code>ZMQ.RECONNECT_IVL</code>）</td>
+<td>当使用面向连接的传输方式时，所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-BACKLOG：设置向外发起的连接队列的最大长度"><a href="#zmq-BACKLOG：设置向外发起的连接队列的最大长度" class="headerlink" title="zmq.BACKLOG：设置向外发起的连接队列的最大长度"></a><code>zmq.BACKLOG</code>：设置向外发起的连接队列的最大长度</h4><p><code>zmq.BACKLOG</code>属性会设置指定的socket的每一个向外连接队列的最大长度；这只对面向连接的传输方式起作用。要查看更多细节请查看你的操作系统的文档中listen函数。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>连接</td>
+<td>1000</td>
+<td>当使用面向连接的传输方式时，所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-MAXMSGSIZE：可接受的最大进入消息的大小"><a href="#zmq-MAXMSGSIZE：可接受的最大进入消息的大小" class="headerlink" title="zmq.MAXMSGSIZE：可接受的最大进入消息的大小"></a><code>zmq.MAXMSGSIZE</code>：可接受的最大进入消息的大小</h4><p>限制进入的消息的大小。如果一端发送了一条消息比<code>zmq.MAXMSGSIZE</code>大，就会断开连接。属性值是 -1表示没有限制。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>B(字节)</td>
+<td>-1</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-MULTICAST-HOPS：多播数据包时候的最大网络中继"><a href="#zmq-MULTICAST-HOPS：多播数据包时候的最大网络中继" class="headerlink" title="zmq.MULTICAST_HOPS：多播数据包时候的最大网络中继"></a><code>zmq.MULTICAST_HOPS</code>：多播数据包时候的最大网络中继</h4><p>设置从这个socket发送出去的多播数据包的存活时间默认值是1，表示这个多播包不能离开本地网络。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>网络中继数</td>
+<td>1</td>
+<td>当使用面向连接的传输方式时，所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-RCVTIMEO：在一个recv操作返回EAGAIN错误前的最大时间"><a href="#zmq-RCVTIMEO：在一个recv操作返回EAGAIN错误前的最大时间" class="headerlink" title="zmq.RCVTIMEO：在一个recv操作返回EAGAIN错误前的最大时间"></a><code>zmq.RCVTIMEO</code>：在一个recv操作返回EAGAIN错误前的最大时间</h4><p>设置socket的接收操作超时时间。如果属性值是0，zmq_recv()函数将会立刻返回，如果没有接收到任何消息，将会返回EAGAIN错误。如果属性值是 -1，将会阻塞，直到接收到消息为止。对于任何其它值，都会进行等待这么多时间，直到返回EAGAIN错误。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>毫秒</td>
+<td>-1（无限等待)</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-SNDTIMEO：在一个发送操作返回EAGAIN之前等待的最大时间"><a href="#zmq-SNDTIMEO：在一个发送操作返回EAGAIN之前等待的最大时间" class="headerlink" title="zmq.SNDTIMEO：在一个发送操作返回EAGAIN之前等待的最大时间"></a><code>zmq.SNDTIMEO</code>：在一个发送操作返回EAGAIN之前等待的最大时间</h4><p>设置指定socket的发送超时。如果属性值是0，zmq_send()函数会立即返回，如果无法发送此消息，则返回EAGAIN错误值。如果属性值是 -1，那么在消息发送之前会进入阻塞模式。对于所有其它的值，将会在超时时间内进行尝试发送消息，超时后返回EAGAIN错误。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>毫秒</td>
+<td>-1（无限等待)</td>
+<td>所有类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-IPV6：在socket上允许使用IPv6"><a href="#zmq-IPV6：在socket上允许使用IPv6" class="headerlink" title="zmq.IPV6：在socket上允许使用IPv6"></a><code>zmq.IPV6</code>：在socket上允许使用IPv6</h4><p>设置此socket的IPv6属性。属性值是1表示IPv6在此socket上可以使用，而属性值是0表示此socket上只能使用IPv4。当socket上允许使用IPv6的时候，这个scoket可以IPv4或者IPv6进行连接或者接受连接。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>布尔</td>
+<td>0（False)</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-IPV4ONLY：在socket上只使用IPv4"><a href="#zmq-IPV4ONLY：在socket上只使用IPv4" class="headerlink" title="zmq.IPV4ONLY：在socket上只使用IPv4"></a><code>zmq.IPV4ONLY</code>：在socket上只使用IPv4</h4><p>设置只使用IPv4属性。不赞成使用这个属性。请使用ZMQ_IPV6属性。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>布尔</td>
+<td>1（True)</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-IMMEDIATE：队列消息只作用于已完成的链接"><a href="#zmq-IMMEDIATE：队列消息只作用于已完成的链接" class="headerlink" title="zmq.IMMEDIATE：队列消息只作用于已完成的链接"></a><code>zmq.IMMEDIATE</code>：队列消息只作用于已完成的链接</h4><p>默认情况下，消息队列在及时连接没有完全建立的时候也会向外发送消息。这会导致使用循环路由的scoket（REQ，PUSH，DEALER）消息“丢失”。如果属性值设置为1，消息只会在连接已经建立完成的时候才会进行发送。这回导致当另一方没有连接的时候出现阻塞的情况，但是可以防止消息队列在等待连接的时候填充管道。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>布尔</td>
+<td>0(False)</td>
+<td>当使用面向连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zm-ROUTER-HANDOVER：处理ROUTER-socket上的每一个身份ID名冲突"><a href="#zm-ROUTER-HANDOVER：处理ROUTER-socket上的每一个身份ID名冲突" class="headerlink" title="zm.ROUTER_HANDOVER：处理ROUTER socket上的每一个身份ID名冲突"></a><code>zm.ROUTER_HANDOVER</code>：处理ROUTER socket上的每一个身份ID名冲突</h4><p>设置当ROUTER socket遇到同名身份ID时的行为。默认情况下，当两个对顿使用相同的身份ID连接到同一个ROUTER socket上的时候，结果是不确定的。属性值是1表示会使ROUTER scoket遇到身份ID冲突的时候进行身份ID的重新分配。特别的，第一次连接上来的socket将会被中介，而第二次连接上来的socket将会接收接下来所有路由给这个身份ID名的消息。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.ROUTER</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-ROUTER-MANDATORY：在ROUTER-socket上只接收可以进行路由的消息"><a href="#zmq-ROUTER-MANDATORY：在ROUTER-socket上只接收可以进行路由的消息" class="headerlink" title="zmq.ROUTER_MANDATORY：在ROUTER socket上只接收可以进行路由的消息"></a><code>zmq.ROUTER_MANDATORY</code>：在ROUTER socket上只接收可以进行路由的消息</h4><p>设置ROUTER socket收到无法路由的消息时的行为。默认属性值是0，表示会静默的丢弃不能路由到的消息。属性值是1时，如果消息不能路由，会返回一个EHOSTUNREACH错误代码。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.ROUTER</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-ROUTER-RAW：转换ROUTER-socket到原始模式"><a href="#zmq-ROUTER-RAW：转换ROUTER-socket到原始模式" class="headerlink" title="zmq.ROUTER_RAW：转换ROUTER socket到原始模式"></a><code>zmq.ROUTER_RAW</code>：转换ROUTER socket到原始模式</h4><p>当设置为1的时候，及把ROUTER 设置为原始模式。当ROUTER为原始模式并且在使用tcp://传输方式的时候，将不会以ZMQ格式读取和写入TCP数据。这就使ZMQ应用程序可以和非ZMQ程序进行交流。当使用原始模式的时候，你不能使用明确的身份ID，并且在发送消息的时候ZMQ_MSGMORE标志也会被忽略。在原始模式下，你可以采用在发送了一个明确的身份ID后，紧跟着发送一个空消息来关闭一个指定的连接。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.ROUTER</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-PROBE-ROUTER：ROUTER-socket-的引导连接"><a href="#zmq-PROBE-ROUTER：ROUTER-socket-的引导连接" class="headerlink" title="zmq.PROBE_ROUTER：ROUTER socket 的引导连接"></a><code>zmq.PROBE_ROUTER</code>：ROUTER socket 的引导连接</h4><p>当次属性设置为1的时候，如果有闲的连接建立了或者接受了新的连接，这个scoket就会自动发送一个空的消息。你可以在连接到ROUTER socket的REQ、DEALER或者ROUTER socket上设置这个属性。这些应用程序必须能够区分这个空消息。<code>zmq.PROBE_ROUTER</code>属性实际上给ROUTER应用程序提供了一个信号信号，说明一个新的对端活着。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.ROUTER，zmq.DEALER，zmq.REQ</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-XPUB-VERBOSEq：提供XPUB-socket上的所有订阅消息"><a href="#zmq-XPUB-VERBOSEq：提供XPUB-socket上的所有订阅消息" class="headerlink" title="`zmq.XPUB_VERBOSEq：提供XPUB socket上的所有订阅消息"></a>`zmq.XPUB_VERBOSEq：提供XPUB socket上的所有订阅消息</h4><p>设置XPUB socket在新的订阅和取消订阅时的行为。默认属性值是0，并且只允许新的订阅消息通过传输到上游。属性值是1表示允许所有的订阅信息通过传输到上游。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.XPUB</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-REQ-CORRELATE：匹配请求回复"><a href="#zmq-REQ-CORRELATE：匹配请求回复" class="headerlink" title="zmq.REQ_CORRELATE：匹配请求回复"></a><code>zmq.REQ_CORRELATE</code>：匹配请求回复</h4><p>REQ scoket的默认行为是依靠消息的次序进行请求和回复的匹配，并且这种方式一般情况下也是足够用的。当这个属性值设置成1的时候，REQ socket 会在向外发送的消息前面加上一个请求ID帧前缀。这就意味着整个消息的结构是（请求ID，0，用户帧）。REQ socket会丢弃所有不是以这两个帧作为开始的消息。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.REQ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="zmq-REQ-RELAXEDq：放松请求和回复之间严格的轮换"><a href="#zmq-REQ-RELAXEDq：放松请求和回复之间严格的轮换" class="headerlink" title="`zmq.REQ_RELAXEDq：放松请求和回复之间严格的轮换"></a>`zmq.REQ_RELAXEDq：放松请求和回复之间严格的轮换</h3><p>默认情况下，REQ socket 不允许在接收到上一个回复之前使用zmq_send(3)开始一个新的请求。当这个属性值设置为1的时候，会允许发送另一个请求，并且结果是断开与期望回复消息端的底层的链接，在支持重连的传输协议里，会触发一个重连的尝试。请求-回复状态被重置，并且一个新的请求会发送到下一个可用的对端上。</p>
+<p>如果设置此属性值为1，应该同时设置<code>zmq.REQ_CORRELATE</code>可用，以确保对请求和回复的正确匹配。否则，如果一个已经被断开的链接发来一个迟来的回复，可能会被认作后来的请求的回复。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>zmq.REQ</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-TCP-KEEPALIVEq：代替SO-KEEPALIVE属性"><a href="#zmq-TCP-KEEPALIVEq：代替SO-KEEPALIVE属性" class="headerlink" title="`zmq.TCP_KEEPALIVEq：代替SO_KEEPALIVE属性"></a>`zmq.TCP_KEEPALIVEq：代替SO_KEEPALIVE属性</h4><p>代替了SO_KEEPALIVE属性。默认值是 -1，表示跳过所有的重写操作，并且把这些属性值交给操作系统。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>-1,0,1</td>
+<td>-1(使用操作系统的值)</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-TCP-KEEPALIVE-IDLE：代替TCP-KEEPCNT（有些操作系统上是TCP-KEEPALIVE）属性"><a href="#zmq-TCP-KEEPALIVE-IDLE：代替TCP-KEEPCNT（有些操作系统上是TCP-KEEPALIVE）属性" class="headerlink" title="zmq.TCP_KEEPALIVE_IDLE：代替TCP_KEEPCNT（有些操作系统上是TCP_KEEPALIVE）属性"></a><code>zmq.TCP_KEEPALIVE_IDLE</code>：代替TCP_KEEPCNT（有些操作系统上是TCP_KEEPALIVE）属性</h4><p>代替TCP_KEEPCNT（有些操作系统上是TCP_KEEPALIVE）属性（当操作系统支持的时候）。默认值是 -1，表示跳过所有的重写操作，并且把这些属性值交给操作系统。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>-1,&gt;0</td>
+<td>-1(使用操作系统的值)</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-TCP-KEEPALIVE-CNT：代替TCP-KEEPCNT-socket属性"><a href="#zmq-TCP-KEEPALIVE-CNT：代替TCP-KEEPCNT-socket属性" class="headerlink" title="zmq.TCP_KEEPALIVE_CNT：代替TCP_KEEPCNT socket属性"></a><code>zmq.TCP_KEEPALIVE_CNT</code>：代替TCP_KEEPCNT socket属性</h4><p>代替TCP_KEEPCNT socket属性（当操作系统支持的时候）。默认值是 -1，表示跳过所有的重写操作，并且把这些属性值交给操作系统。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>-1,&gt;0</td>
+<td>-1(使用操作系统的值)</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-TCP-ACCEPT-FILTER：为新连上来的TCP连接分配过滤器"><a href="#zmq-TCP-ACCEPT-FILTER：为新连上来的TCP连接分配过滤器" class="headerlink" title="zmq.TCP_ACCEPT_FILTER：为新连上来的TCP连接分配过滤器"></a><code>zmq.TCP_ACCEPT_FILTER</code>：为新连上来的TCP连接分配过滤器</h4><p>在一个监听socket上分配一个任意的过滤器会作用于每一个新连接上来的TCP链接。如果没有使用任何过滤器，TCP传输会允许任意的IP地址连接上来。如果设置了至少一个过滤器，那么新连接上来的源ip就需要能够匹配。向情况所有的过滤器，请调用setsockopt(socket, zmq.TCP_ACCEPT_FILTER, NULL, 0)。过滤器是一个以空字节结尾的IPv6或IPv4 CIDR（无类域间路由）。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据</td>
+<td>N/A</td>
+<td>无过滤（允许任何地方来的）</td>
+<td>当使用TCP连接的时候，所有监听socket</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-PLAIN-SERVER：设置PLAIN-服务的角色"><a href="#zmq-PLAIN-SERVER：设置PLAIN-服务的角色" class="headerlink" title="zmq.PLAIN_SERVER：设置PLAIN 服务的角色"></a><code>zmq.PLAIN_SERVER</code>：设置PLAIN 服务的角色</h4><p>定义一个socket是否作为PLAIN 安全方式的服务端，参见zmq_plain(7)。设置属性值为1表示这个scoket将会作为PLAIN的服务端。属性值设置为0表示这个socket不作为PLAIN服务端，并且它的安全方式依赖于其它的属性设置。设置此属性为0会重置这个scoket的安全方式为NULL。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特征字符串</td>
+<td>N/A</td>
+<td>不设置</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-CURVE-SERVER：设置CURVE服务端角色"><a href="#zmq-CURVE-SERVER：设置CURVE服务端角色" class="headerlink" title="zmq.CURVE_SERVER：设置CURVE服务端角色"></a><code>zmq.CURVE_SERVER</code>：设置CURVE服务端角色</h4><p>定义一个socket是否为CURVE 安全方式的服务端，参见zmq_curve()。属性值是1表示这个 socket将会作为一个CURVE服务端。属性值是0表示这个socket将不会作为CURVE客户端，并且其安全方式的角色将会依赖于其它属性设置。设置此属性值为0将会重置此socket的安全方式为NULL。如果你设置这个属性，你必须使用ZMQ_CURVE_SECRETKEY属性设置这个服务端的秘钥。一个服务端socket不需要知道它自己的公钥。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0,1</td>
+<td>0</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-CURVE-PUBLICKEY：设置CURVE公钥"><a href="#zmq-CURVE-PUBLICKEY：设置CURVE公钥" class="headerlink" title="zmq.CURVE_PUBLICKEY：设置CURVE公钥"></a><code>zmq.CURVE_PUBLICKEY</code>：设置CURVE公钥</h4><p>设置socket的长期公钥。你必须设置CURVE客户端的这个属性，参见zmq_curve(7)。你可以用32位二进制字节或者经过Z85格式加密后的40字符串。这个公钥必须和秘钥匹配使用。可以使用zmq_curve_keypair(3)函数生成一个公钥/密钥对。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据或者Z85格式的文本字符串</td>
+<td>32或者40</td>
+<td>NULL</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-CURVE-SECRETKEY：设置CURVE密钥"><a href="#zmq-CURVE-SECRETKEY：设置CURVE密钥" class="headerlink" title="zmq.CURVE_SECRETKEY：设置CURVE密钥"></a><code>zmq.CURVE_SECRETKEY</code>：设置CURVE密钥</h4><p>这是此socket的长期密钥。你必须在CURVE客户端和服务端上都设置此属性，参见zmq_curve(7)。你可以用32位二进制字节或者经过Z85格式加密后的40字符串。这个公钥必须和秘钥匹配使用。可以使用zmq_curve_keypair(3)函数生成一个公钥/密钥对。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据或者Z85格式的文本字符串</td>
+<td>32或者40</td>
+<td>NULL</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-CURVE-SERVERKEY：设置CURVE服务端码"><a href="#zmq-CURVE-SERVERKEY：设置CURVE服务端码" class="headerlink" title="zmq.CURVE_SERVERKEY：设置CURVE服务端码"></a><code>zmq.CURVE_SERVERKEY</code>：设置CURVE服务端码</h4><p>设置此socket的长期服务端码。你必须在客户端socket上设置此服务端码，参见zmq_curve()。你可以用32位二进制字节或者经过Z85格式加密后的40字符串。这个公钥必须和秘钥匹配使用。这个码必须是服务端生成密钥的时候一块生成的。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二进制数据或者Z85格式的文本字符串</td>
+<td>32或者40</td>
+<td>NULL</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-ZAP-DOMAIN：设置RFC-27认证域"><a href="#zmq-ZAP-DOMAIN：设置RFC-27认证域" class="headerlink" title="zmq.ZAP_DOMAIN：设置RFC 27认证域"></a><code>zmq.ZAP_DOMAIN</code>：设置RFC 27认证域</h4><p>设置ZAP（ZMQ RFC 27）认证域。对于空的安全方式（默认在所有的tcp://连接上），ZAP认证只在你设置一个非空的域时起作用。对于PLAIN和CURVE安全方式，如果有ZAP处理程序存在，总是会请求ZAP。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>N/A</td>
+<td>不设置</td>
+<td>当使用TCP连接的时候，所有类型可用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="zmq-CONFLATE：只保留最后到来的消息"><a href="#zmq-CONFLATE：只保留最后到来的消息" class="headerlink" title="`zmq.CONFLATE：只保留最后到来的消息"></a>`zmq.CONFLATE：只保留最后到来的消息</h4><p>如果设置了这个值，socket只会在其入站/出站队列中保留一个消息，那就是最后一个接收到的消息，或者最后一个要发送的消息。设置此属性会忽略<code>zmq.RECVHWM</code>属性和<code>zmq.SENDHWM</code>属性。不支持多帧消息，特别的，在socket的内部消息队列中，只有一个帧会被保留。</p>
+<table>
+<thead>
+<tr>
+<th>属性值类型</th>
+<th>属性值单位</th>
+<th>默认值</th>
+<th>可应用的socket类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>布尔</td>
+<td>0（False)</td>
+<td>zmq.PULL, zmq.PUSH, zmq.SUB, zmq.PUB, zmq.DEALER</td>
+</tr>
+</tbody>
+</table>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>如果执行成功，zmq_setsockopt()函数会返回0。否则会返回 -1，并且设置errno为下列定义值中的一个。</p>
+<p>错误</p>
+<ul>
+<li><p>EINVAL：请求的属性中，属性名称为止，或者属性长度或者属性值不可用。</p>
+</li>
+<li><p>ETERM：和指定socket相关的context已经被终结了</p>
+</li>
+<li><p>ENOTSOCK：参数提供的socket不可用</p>
+</li>
+<li><p>EINTR：本次操作被信号中断了</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Express</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">基础教程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">zmq</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">setsockopt</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ansgoo.github.io/Ranger/2019/07/14/zmq常见socket属性设置/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/Ranger/2019/06/22/PyZMQ请求应答模式-观察者模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PyZMQ请求应答模式-观察者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "https://ansgoo.github.io/Ranger/Ranger/2019/07/14/zmq常见socket属性设置/", 
+    sourceId: "zmq常见socket属性设置",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -220,9 +1096,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
