@@ -142,6 +142,223 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-实用python工具包锦集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Ranger/2019/10/10/实用python工具包锦集/">实用python工具包锦集</a>
+    </h1>
+  
+
+        
+        <a href="/Ranger/2019/10/10/实用python工具包锦集/" class="archive-article-date">
+  	<time datetime="2019-10-10T14:25:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h2><p>sh 是一个成熟，用于替代 subprocess，它允许你调用任何程序，就像它是一个函数，支持 Python2.6 - 3.5</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sh <span class="keyword">import</span> ifconfig</span><br><span class="line"><span class="keyword">print</span> ifconfig(<span class="string">"eth0"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="mycli"><a href="#mycli" class="headerlink" title="mycli"></a>mycli</h2><p><code>mycli</code> 是一个带语法高亮、自动补全的 MySQL 命令行客户端工具。例如，连接数据库方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mycli -h localhost -u 用户名 数据库</span><br></pre></td></tr></table></figure>
+<h2 id="python-fire"><a href="#python-fire" class="headerlink" title="python-fire"></a>python-fire</h2><p>Fire 是 Google 开源的 Python 库，可自动将您的代码转变成 CLI，无需您做任何额外工作。您不必定义参数，设置帮助信息，或者编写定义代码运行方式的 main 函数。相反，您只需从 main 模块调用“Fire”函数，其余工作全部交由 Python Fire 来完成。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> fire</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(self, name=<span class="string">'world'</span>)</span>:</span></span><br><span class="line">        <span class="string">"""Says hello to the specified name."""</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Hello &#123;name&#125;!'</span>.format(name=name)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    fire.Fire(Example)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 在终端中调用效果如下：</span><br><span class="line"><span class="meta">$</span> ./example.py hello</span><br><span class="line">Hello world!</span><br><span class="line"><span class="meta">$</span> ./example.py hello David</span><br><span class="line">Hello David!</span><br><span class="line"><span class="meta">$</span> ./example.py hello --name=Google</span><br><span class="line">Hello Google!</span><br></pre></td></tr></table></figure>
+<h2 id="pdir2"><a href="#pdir2" class="headerlink" title="pdir2"></a>pdir2</h2><p>Python 程序员需要一个更好的 dir() —— 以更加友好的显示 dir() 输出的结果</p>
+<h2 id="freezegun"><a href="#freezegun" class="headerlink" title="freezegun"></a>freezegun</h2><p>时间漫步模块，模拟到某一个时间，使用简单方式多样，实现了装饰器、上下文等调用方式。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> freezegun <span class="keyword">import</span> freeze_time</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@freeze_time("2012-01-14")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> datetime.datetime.now() == datetime.datetime(<span class="number">2012</span>, <span class="number">1</span>, <span class="number">14</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="records"><a href="#records" class="headerlink" title="records"></a>records</h2><p>Kenneth Reitz 大神的for Humans™系列，Records 是一个支持大多数主流关系数据库的原生 SQL 查询第三方库。API 友好，使用简单、支持命令行模式、功能多样。与此同时该库只有 500 行代码，可以当作入门阅读源码的项目，同时学习大神的编程技巧与习惯，示例代码如下：</p>
+<h2 id="pygorithm"><a href="#pygorithm" class="headerlink" title="pygorithm"></a>pygorithm</h2><p>一个帮助学习主要算法的库，可以通过理解这些算法的实现，提高自己的算法水平</p>
+<h2 id="huey"><a href="#huey" class="headerlink" title="huey"></a>huey</h2><p>结合 redis 实现的轻量任务队列，但是支持功能还是很多的：</p>
+<ul>
+<li>多进程、多线程、协程</li>
+<li>任务定时执行</li>
+<li>任务执行失败重试</li>
+<li>结果存储</li>
+</ul>
+<h2 id="joblib"><a href="#joblib" class="headerlink" title="joblib"></a>joblib</h2><p>使用 Python 方便的进行并行计算，示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> joblib <span class="keyword">import</span> Parallel, delayed</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line">Parallel(n_jobs=<span class="number">1</span>)(delayed(sqrt)(i**<span class="number">2</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="thefuck"><a href="#thefuck" class="headerlink" title="thefuck"></a>thefuck</h2><p>在 Linux 命令行中，当你输入的命令有错误后，直接输入 fuck 就可以自动执行修复后的命令</p>
+<h2 id="pook"><a href="#pook" class="headerlink" title="pook"></a>pook</h2><p>模拟 HTTP 请求结果的库，可用于单元测试等场景。采用装饰器方式调用的示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> pook</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="meta">@pook.get('http://httpbin.org/status/500', reply=204)</span></span><br><span class="line"><span class="meta">@pook.get('http://httpbin.org/status/400', reply=200)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fetch</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> requests.get(url)</span><br><span class="line"></span><br><span class="line">res = fetch(<span class="string">'http://httpbin.org/status/400'</span>)</span><br><span class="line">print(<span class="string">'#1 status:'</span>, res.status_code)</span><br><span class="line"></span><br><span class="line">res = fetch(<span class="string">'http://httpbin.org/status/500'</span>)</span><br><span class="line">print(<span class="string">'#2 status:'</span>, res.status_code)</span><br></pre></td></tr></table></figure>
+<h2 id="tenacity"><a href="#tenacity" class="headerlink" title="tenacity"></a>tenacity</h2><p>使用该库可以优雅地实现各种需求的重试。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tenacity <span class="keyword">import</span> retry, stop_after_attempt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过装饰器，实现遇到异常重试3次</span></span><br><span class="line"><span class="meta">@retry(stop=stop_after_attempt(3)) </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">(url)</span>:</span></span><br><span class="line">    response = requests.get(url)</span><br><span class="line">    response_json = response.json()</span><br></pre></td></tr></table></figure>
+<h2 id="pudb"><a href="#pudb" class="headerlink" title="pudb"></a>pudb</h2><p>基于控制台的全屏 Python 可视化调试器。比 pdb 好用太多了，特性：</p>
+<ul>
+<li>源码语法高亮，栈、断点、变量可见并且一直动态更新。变量展示还有很多可以定制化的功能。</li>
+<li>基于键盘，简单高效。支持 VI 的鼠标移动。还支持 PDB 的某些命令</li>
+<li>支持查找源代码，可以使用 m 代用 module browser 查看载入的模块</li>
+<li>断点设置。鼠标移到某行代码，按 b，然后可以在断点窗口编辑断点</li>
+</ul>
+<h2 id="loguru"><a href="#loguru" class="headerlink" title="loguru"></a>loguru</h2><p>一个让 Python 记录日志变得简单的库</p>
+<h2 id="click"><a href="#click" class="headerlink" title="click"></a>click</h2><p>Python 的第三方库，用于快速创建命令行。支持装饰器方式调用、多种参数类型、自动生成帮助信息等。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> click</span><br><span class="line"></span><br><span class="line"><span class="meta">@click.command()</span></span><br><span class="line"><span class="meta">@click.option("--count", default=1, help="Number of greetings.")</span></span><br><span class="line"><span class="meta">@click.option("--name", prompt="Your name",</span></span><br><span class="line">              help=<span class="string">"The person to greet."</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(count, name)</span>:</span></span><br><span class="line">    <span class="string">"""Simple program that greets NAME for a total of COUNT times."""</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(count):</span><br><span class="line">        click.echo(<span class="string">"Hello, %s!"</span> % name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    hello()</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span> 下面为运行效果</span><br><span class="line"><span class="meta">$</span> python hello.py --count=3</span><br><span class="line">Your name: Click</span><br><span class="line">Hello, Click!</span><br><span class="line">Hello, Click!</span><br><span class="line">Hello, Click!</span><br></pre></td></tr></table></figure>
+<h2 id="pyright"><a href="#pyright" class="headerlink" title="pyright"></a>pyright</h2><p>微软出品的 Python 静态类型检查工具。执行速度快，适合大型 Python 项目，引用一句话：动态语言一时爽，重构火葬场</p>
+<h2 id="PySnooper"><a href="#PySnooper" class="headerlink" title="PySnooper"></a>PySnooper</h2><p>Python 的第三方调试库。让你通过装饰器方法，方便的知道每一行程序运行后的结果，而不需要再手动增加 print 展示过程数据、调试程序。示例代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pysnooper</span><br><span class="line"></span><br><span class="line"><span class="meta">@pysnooper.snoop()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">number_to_bits</span><span class="params">(number)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> number:</span><br><span class="line">        bits = []</span><br><span class="line">        <span class="keyword">while</span> number:</span><br><span class="line">            number, remainder = divmod(number, <span class="number">2</span>)</span><br><span class="line">            bits.insert(<span class="number">0</span>, remainder)</span><br><span class="line">        <span class="keyword">return</span> bits</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">number_to_bits(<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 输出如下</span><br><span class="line">Starting var:.. number = 6</span><br><span class="line">15:29:11.327032 call         4 def number_to_bits(number):</span><br><span class="line">15:29:11.327032 line         5     if number:</span><br><span class="line">15:29:11.327032 line         6         bits = []</span><br><span class="line">New var:....... bits = []</span><br><span class="line">15:29:11.327032 line         7         while number:</span><br><span class="line">15:29:11.327032 line         8             number, remainder = divmod(number, 2)</span><br><span class="line">New var:....... remainder = 0</span><br><span class="line">Modified var:.. number = 3</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<h2 id="装饰器妙用"><a href="#装饰器妙用" class="headerlink" title="装饰器妙用"></a>装饰器妙用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_time</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">int_time</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        start_time = datetime.datetime.now()  <span class="comment"># 程序开始时间</span></span><br><span class="line">        func()</span><br><span class="line">        over_time = datetime.datetime.now()   <span class="comment"># 程序结束时间</span></span><br><span class="line">        total_time = (over_time-start_time).total_seconds()</span><br><span class="line">        print(<span class="string">'程序共计%s秒'</span> % total_time)</span><br><span class="line">    <span class="keyword">return</span> int_time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@count_time</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'&gt;&gt;&gt;&gt;开始计算函数运行时间'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">1000</span>):　　　　　　<span class="comment"># 可以是任意函数  ， 这里故意模拟函数的运行时间</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</span><br><span class="line">            print(j)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h2 id="arrow"><a href="#arrow" class="headerlink" title="arrow"></a>arrow</h2><p>还在为处理时间、时区、转化、夏令时等问题而头疼吗？这个 Python 的第三方时间库。提供了更便捷的方式来创建、操作和格式化时间和日期，用更少的代码来处理时间和日期</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">第三方工具包</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Ranger/2019/10/10/实用python工具包锦集/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Celery4-1-中文文档" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Ranger/2019/08/01/Celery4-1-中文文档/">Celery4.1 中文文档</a>
+    </h1>
+  
+
+        
+        <a href="/Ranger/2019/08/01/Celery4-1-中文文档/" class="archive-article-date">
+  	<time datetime="2019-08-01T15:01:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Application-应用"><a href="#Application-应用" class="headerlink" title="Application(应用)"></a>Application(应用)</h1><p>Celery 库在使用之前必须初始化，一个celery实例被称为一个应用（或者缩写 app）。</p>
+<p>Celery 应用是线程安全的，所以多个不同配置、不同组件、不同任务的 应用可以在一个进程空间里共存。<br>下面创建一个 celery 应用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>app = Celery()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>app</span><br><span class="line">&lt;Celery __main__:<span class="number">0x100469fd0</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>最后一行显示的是 celery 应用的文本表示： 包含应用类的名称（Celery），当前主模块的名称（main），以及应用对象的内存地址（0x100469fd0）。</p>
+<h2 id="Main-Name"><a href="#Main-Name" class="headerlink" title="Main Name"></a>Main Name</h2><p>上述文本表示中只有一部分是重要的，那就是主模块名称。下面分析下它为何重要。</p>
+<p>当你发送一个消息给 Celery，消息中不会包含任何源码，而只有你想要执行的任务的名称。这就好像因特网上的域名映射原理一般：每个执行单元维护着一个任务名称到实际任务函数的映射，这个映射被称为任务注册表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>@app.task</span><br><span class="line"><span class="meta">... </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add</span><br><span class="line">&lt;@task: __main__.add&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add.name</span><br><span class="line">__main__.add</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>app.tasks[<span class="string">'__main__.add'</span>]</span><br><span class="line">&lt;@task: __main__.add&gt;</span><br></pre></td></tr></table></figure>
+<p>现在，你又看到显示 <strong>main</strong> 模块名称；当Celery不能探查到这个任务函数属于哪个模块时，它将使用主模块名称来产生任务名称的前缀。</p>
+<p>这在有些情况下会产生问题： </p>
+<ol>
+<li>定义任务的主模块作为一个程序运行。 </li>
+<li>应用在python交互终端创建。</li>
+</ol>
+<p>例如下面程序，定义任务的模块还调用 <code>app.worker_main()</code> 来启动一个工作单元：<br>task.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line">app = Celery()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span> <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.worker_main()</span><br></pre></td></tr></table></figure>
+<p>当这个模块运行，任务将以前缀<code>__main__</code> 命名，但是当该模块被其他进程引入来运行一个任务，这个任务的名称将以前缀 tasks 命名（即这个模块的真实名称）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> tasks <span class="keyword">import</span> add</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add.name</span><br><span class="line">tasks.add</span><br></pre></td></tr></table></figure>
+<p>你可以给主模块声明另外一个名称</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>app = Celery(<span class="string">'tasks'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>app.main</span><br><span class="line"><span class="string">'tasks'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>@app.task</span><br><span class="line"><span class="meta">... </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> x + y</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>add.name</span><br><span class="line">tasks.add</span><br></pre></td></tr></table></figure>
+<p>具体可以查看名称这节</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Celery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/Ranger/2019/08/01/Celery4-1-中文文档/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Gevent-简明教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -352,11 +569,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Gevent</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Gevent</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -841,7 +1058,8 @@
 <p>django项目的架构通常是这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">project---</span><br><span class="line">         |--project--|</span><br><span class="line">                     |__init__.py</span><br><span class="line">                     |urls.py</span><br><span class="line">                     |settings.py</span><br><span class="line">                     |wsgi.py</span><br><span class="line"></span><br><span class="line">         |---app-----|__init__.py</span><br><span class="line">                     |app.py</span><br><span class="line">                     |urls.py</span><br><span class="line">                     |views--|__init__.py</span><br><span class="line">                             |model1.py</span><br><span class="line">                             |model2.py</span><br><span class="line">                             |...</span><br><span class="line">                             </span><br><span class="line">                     |model.py</span><br><span class="line">                     |admin.py</span><br><span class="line">        ....</span><br><span class="line"></span><br><span class="line">        |--manage.py</span><br></pre></td></tr></table></figure></p>
 <p>在project文件夹下建立<code>activater.py</code>路由匹配文件,内容如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> importlib</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render_to_response,HttpResponse,redirect</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process</span><span class="params">(request,**kwargs)</span>:</span></span><br><span class="line">    <span class="string">'''接收所有匹配url的请求，根据请求url中的参数，通过反射动态指定view中的方法'''</span></span><br><span class="line">    </span><br><span class="line">    app =  kwargs.get(<span class="string">'app'</span>,<span class="literal">None</span>)</span><br><span class="line">    function = kwargs.get(<span class="string">'function'</span>,<span class="literal">None</span>)</span><br><span class="line">    model = kwargs.get(<span class="string">'model'</span>,<span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        app_obj=__import__(<span class="string">"%s.views"</span> %app)</span><br><span class="line">        view_obj = getattr(app_obj, <span class="string">'views'</span>)</span><br><span class="line">        model_obj = getattr(view_obj, model)</span><br><span class="line">        func_obj = getattr(model_obj, function)</span><br><span class="line">    <span class="comment">#执行view.py中的函数，并获取其返回值</span></span><br><span class="line">        <span class="keyword">if</span> kwargs.get(<span class="string">'id'</span>):</span><br><span class="line">            result=func_obj(request,kwargs.get(<span class="string">'id'</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result=func_obj(request)</span><br><span class="line">    <span class="keyword">except</span> (ImportError,AttributeError) <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        <span class="comment">#导入失败时，自定义404错误</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'404 Not Found'</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        <span class="comment">#代码执行异常时，自动跳转到指定页面</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">'404 Not Found'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></p>
 <p>修改project文件夹下的<code>urls.py</code>为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path,include,re_path</span><br><span class="line"><span class="keyword">from</span> .activater <span class="keyword">import</span> process</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">    re_path(<span class="string">'^(?P&lt;app&gt;(\w+))/(?P&lt;model&gt;(\w+))/(?P&lt;function&gt;(\w+))/(?P&lt;id&gt;(\d+))/$'</span>,process),</span><br><span class="line">    re_path(<span class="string">'^(?P&lt;app&gt;(\w+))/(?P&lt;model&gt;(\w+))/(?P&lt;function&gt;(\w+))/$'</span>,process),</span><br><span class="line">]</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
-<p>修改后的项目架构为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">project---</span><br><span class="line">         |--project--|</span><br><span class="line">                     |__init__.py</span><br><span class="line">                     |urls.py</span><br><span class="line">                     |settings.py</span><br><span class="line">                     |wsgi.py</span><br><span class="line">                     |activater.py</span><br><span class="line"></span><br><span class="line">         |---app-----|__init__.py</span><br><span class="line">                     |app.py</span><br><span class="line">                     |views--|__init__.py</span><br><span class="line">                             |model1.py</span><br><span class="line">                             |model2.py</span><br><span class="line">                             |...</span><br><span class="line"></span><br><span class="line">                     |model.py</span><br><span class="line">                     |admin.py</span><br><span class="line">        ....</span><br><span class="line"></span><br><span class="line">        |--manage.py</span><br></pre></td></tr></table></figure></p>
+<p>修改后的项目架构为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">project---</span><br><span class="line">         |--project--|</span><br><span class="line">                     |__init__.py</span><br><span class="line">                     |urls.py</span><br><span class="line">                     |settings.py</span><br><span class="line">                     |wsgi.py</span><br><span class="line">                     |activater.py</span><br><span class="line"></span><br><span class="line">         |---app-----|__init__.py</span><br><span class="line">                     |app.py</span><br><span class="line">                     |views--|__init__.py</span><br><span class="line">                             |model1.py</span><br><span class="line">                             |model2.py</span><br><span class="line">                             |...</span><br><span class="line"></span><br><span class="line">                     |model.py</span><br><span class="line">                     |admin.py</span><br><span class="line">        ....</span><br><span class="line"></span><br><span class="line">        |--manage.py</span><br></pre></td></tr></table></figure>
 <p>至此django一个动态路由系统就实现了，当然实际在开发过程中需要根据项目架构修改<code>activater.py</code>映射关系，不必要按照本文代码来</p>
 <p><strong>note</strong>:本代码示例基于django2.0版本</p>
 
@@ -1083,192 +1301,10 @@
 
 
   
-    <article id="post-APScheduler教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/Ranger/2019/05/06/APScheduler教程/">APScheduler教程</a>
-    </h1>
-  
-
-        
-        <a href="/Ranger/2019/05/06/APScheduler教程/" class="archive-article-date">
-  	<time datetime="2019-05-06T10:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>APScheduler(Advanced Python Scheduler) 是一个python 定时任务管理库，你可以用它进行job的增加、删除，你也可以将你的jobs进行序列化存储到相应数据库。</p>
-<p>APScheudler是一个跨平台python库，你可以用它来代替windows平台上的计划任务，也可以用它来替代Linux平台的守时任务</p>
-<p>APScheduler基于Quartz的一个Python定时任务框架，实现了Quartz的所有功能，使用起来十分方便。提供了基于日期、固定时间间隔以及crontab类型的任务，并且可以持久化任务。基于这些功能，我们可以很方便的实现一个python定时任务系统。<br></p>
-        
-          <a class="article-more-a" href="/Ranger/2019/05/06/APScheduler教程/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">apscheduler</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">定时任务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Ranger/2019/05/06/APScheduler教程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-使用github搭建静态博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Ranger/2019/05/04/使用github搭建静态博客/">使用github搭建静态博客</a>
-    </h1>
-  
-
-        
-        <a href="/Ranger/2019/05/04/使用github搭建静态博客/" class="archive-article-date">
-  	<time datetime="2019-05-04T10:31:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直想找一个知识管理方法，免费、支持移动端同步、支持MarkDown、支持代码块高亮，使用遍了所有笔记应用，印象、有道、为知、OneNote无一要么每个月有流量限制，要么不支持markdown和代码高亮，最后还是选定了GitHub搭建静态博客方式，这是本人的搭建过程，仅供参考</p>
-<h3 id="在github上创建自己的博客仓"><a href="#在github上创建自己的博客仓" class="headerlink" title="在github上创建自己的博客仓"></a>在github上创建自己的博客仓</h3><p>具体方法请自行百度</p>
-<h3 id="本地搭建Hexo运行环境"><a href="#本地搭建Hexo运行环境" class="headerlink" title="本地搭建Hexo运行环境"></a>本地搭建<a href="https://hexo.io/zh-cn" target="_blank" rel="noopener">Hexo</a>运行环境</h3><ol>
-<li>安装Node.js环境<blockquote>
-<p>具体自行百度谷歌</p>
-</blockquote>
-</li>
-<li>本地安装git环境,并进行SSH授权<blockquote>
-<p>具体自行百度谷歌</p>
-</blockquote>
-</li>
-<li>安装Hexo</li>
-</ol>
-<blockquote>
-<p><code>npm install hexo-cli -g</code></p>
-</blockquote>
-<h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>1.创建hexo博客这里以<code>blog</code>为例</p>
-<blockquote>
-<p><code>hexo init blog</code></p>
-</blockquote>
-<p>运行hexo博客<br></p>
-        
-          <a class="article-more-a" href="/Ranger/2019/05/04/使用github搭建静态博客/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/Ranger/2019/05/04/使用github搭建静态博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/Ranger/page/2/">2</a><a class="extend next" rel="next" href="/Ranger/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -1375,23 +1411,23 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Gevent</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步编程</a>
+                <a href="javascript:void(0)" class="js-tag color2">apscheduler</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">django</a>
+                <a href="javascript:void(0)" class="js-tag color5">定时任务</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态路由</a>
+                <a href="javascript:void(0)" class="js-tag color3">Express</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">基础教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1411,27 +1447,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Express</a>
+                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">基础教程</a>
+                <a href="javascript:void(0)" class="js-tag color2">Gevent</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">apscheduler</a>
+                <a href="javascript:void(0)" class="js-tag color5">异步编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">定时任务</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
+                <a href="javascript:void(0)" class="js-tag color2">django</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1439,11 +1467,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">第三方工具包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ZeroMQ</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">观察者模式</a>
+                <a href="javascript:void(0)" class="js-tag color2">Celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">动态路由</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1456,6 +1492,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
             
             <div class="clearfix"></div>
